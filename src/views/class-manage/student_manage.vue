@@ -4,6 +4,7 @@
       <el-card class="box-card">
         <el-row :gutter="20">
           <!--部门数据-->
+          <!--
           <el-col :span="4" :xs="24">
             <div class="head-container">
               <el-input
@@ -27,6 +28,7 @@
               />
             </div>
           </el-col>
+          -->
           <!--用户数据-->
           <el-col :span="20" :xs="24">
             <el-form ref="queryForm" :model="queryParams" :inline="true" label-width="68px">
@@ -107,28 +109,19 @@
             <el-table
               v-loading="loading"
               :data="userList"
-              fit
               border
               @selection-change="handleSelectionChange"
               @sort-change="handleSortChang"
             >
               <el-table-column type="selection" width="45" align="center" />
-              <el-table-column label="登录名" width="105" prop="username" sortable="custom" :show-overflow-tooltip="true" />
-              <el-table-column label="班级" prop="dept.deptName" width="216" />
-              <el-table-column label="手机号" prop="phone" width="216" />
-              <el-table-column label="教师" prop="teacherName" width="216" />
-              <el-table-column label="状态" width="80" sortable="custom">
-                <template slot-scope="scope">
-                  <el-switch
-                    v-model="scope.row.status"
-                    active-value="2"
-                    inactive-value="1"
-                    @change="handleStatusChange(scope.row)"
-                  />
-                </template>
-              </el-table-column>
+              <el-table-column label="学生" width="108" prop="username" sortable="custom" :show-overflow-tooltip="true" />
+              <el-table-column label="班级" prop="dept.deptName" width="108" />
+              <el-table-column label="手机号" prop="phone" width="108" />
+              <el-table-column label="教师" prop="teacherName" width="108" />
+              <el-table-column label="进度" prop="progress" width="216" />
+              <el-table-column label="评语" prop="remark" width="216" />
               <el-table-column
-                label="创建时间"
+                label="注册时间"
                 prop="createdAt"
                 sortable="custom"
                 width="155"
@@ -146,7 +139,6 @@
               >
                 <template slot-scope="scope">
                   <el-button
-                    v-permisaction="['admin:sysUser:edit']"
                     size="mini"
                     type="text"
                     icon="el-icon-edit"
@@ -187,7 +179,7 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="用户昵称" prop="nickName">
-                <el-input v-model="form.nickName" placeholder="请输入用户昵称" />
+                <el-input v-model="form.nickName" placeholder="请输入用户昵称" disabled="true" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -196,6 +188,7 @@
                   v-model="form.deptId"
                   :options="deptOptions"
                   placeholder="请选择所属班级"
+                  disabled="true"
                 />
               </el-form-item>
             </el-col>
@@ -210,41 +203,15 @@
                 <el-input v-model="form.email" placeholder="请输入邮箱" maxlength="50" />
               </el-form-item>
             </el-col>
-            -->
+          -->
             <el-col :span="12">
               <el-form-item label="用户名称" prop="username">
-                <el-input v-model="form.username" placeholder="请输入用户名称" />
+                <el-input v-model="form.username" placeholder="请输入用户名称" disabled="true" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item v-if="form.userId == undefined" label="用户密码" prop="password">
-                <el-input v-model="form.password" placeholder="请输入用户密码" type="password" />
-              </el-form-item>
-            </el-col>
-
-            <el-col :span="12">
-              <el-form-item label="角色" prop="roleId">
-                <el-select v-model="form.roleId" placeholder="请选择" @change="$forceUpdate()">
-                  <el-option
-                    v-for="item in roleOptions"
-                    :key="item.roleId"
-                    :label="item.roleName"
-                    :value="item.roleId"
-                    :disabled="item.status == 1"
-                  />
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="所属教师">
-                <el-select v-model="form.teacherName" placeholder="请选择" @change="$forceUpdate()">
-                  <el-option
-                    v-for="item in teacherOptions"
-                    :key="item.value"
-                    :label="item.name"
-                    :value="item.value"
-                  />
-                </el-select>
+                <el-input v-model="form.password" placeholder="请输入用户密码" type="password" disabled="true" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -266,6 +233,7 @@
                     v-for="dict in statusOptions"
                     :key="dict.value"
                     :label="dict.value"
+                    disabled="true"
                   >{{ dict.label }}</el-radio>
                 </el-radio-group>
               </el-form-item>
@@ -273,7 +241,7 @@
 
             <el-col :span="12">
               <el-form-item label="岗位">
-                <el-select v-model="form.postId" placeholder="请选择" @change="$forceUpdate()">
+                <el-select v-model="form.postId" placeholder="请选择" disabled="true" @change="$forceUpdate()">
                   <el-option
                     v-for="item in postOptions"
                     :key="item.postId"
@@ -284,7 +252,19 @@
                 </el-select>
               </el-form-item>
             </el-col>
-
+            <el-col :span="12">
+              <el-form-item label="角色">
+                <el-select v-model="form.roleId" disabled="true" placeholder="请选择" @change="$forceUpdate()">
+                  <el-option
+                    v-for="item in roleOptions"
+                    :key="item.roleId"
+                    :label="item.roleName"
+                    :value="item.roleId"
+                    :disabled="item.status == 1"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
             <el-col :span="24">
               <el-form-item label="备注">
                 <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
@@ -341,6 +321,7 @@ import { treeselect } from '@/api/admin/sys-dept'
 
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import store from '@/store'
 
 export default {
   name: 'SysUserManage',
@@ -379,8 +360,6 @@ export default {
       postOptions: [],
       // 角色选项
       roleOptions: [],
-      // 教师选项
-      teacherOptions: [],
       // 表单参数
       form: {},
       defaultProps: {
@@ -409,19 +388,20 @@ export default {
         username: undefined,
         phone: undefined,
         status: undefined,
-        deptId: undefined
+        deptId: undefined,
+        teacher: store.getters.name
       },
       // 表单校验
       rules: {
         username: [{ required: true, message: '用户名称不能为空', trigger: 'blur' }],
         nickName: [{ required: true, message: '用户昵称不能为空', trigger: 'blur' }],
-        deptId: [{ required: true, message: '所属班级不能为空', trigger: 'blur' }],
+        deptId: [{ required: true, message: '所属不能为空', trigger: 'blur' }],
         password: [{ required: true, message: '用户密码不能为空', trigger: 'blur' }],
-        roleId: [{ required: true, message: '角色不能为空', trigger: 'blur' }],
-        // email: [
-        //   { required: true, message: '邮箱地址不能为空', trigger: 'blur' },
-        //   { type: 'email', message: "'请输入正确的邮箱地址", trigger: ['blur', 'change'] }
-        // ],
+        /* email: [
+          { required: true, message: '邮箱地址不能为空', trigger: 'blur' },
+          { type: 'email', message: "'请输入正确的邮箱地址", trigger: ['blur', 'change'] }
+        ],
+        */
         phone: [
           { required: true, message: '手机号码不能为空', trigger: 'blur' },
           { pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/, message: '请输入正确的手机号码', trigger: 'blur' }
@@ -538,9 +518,7 @@ export default {
         status: '2',
         remark: undefined,
         postIds: undefined,
-        roleIds: undefined,
-        teacherName: undefined,
-        teacherOptions: []
+        roleIds: undefined
       }
       this.resetForm('form')
     },
@@ -576,28 +554,10 @@ export default {
       this.open = true
       this.title = '添加用户'
       this.form.password = this.initPassword
-      this.teacherOptions = []
-      this.teacherOptions.push({
-        name: 'will',
-        value: '2:will'
-      })
-      this.teacherOptions.push({
-        name: 'codeMagic',
-        value: '1:codeMagic'
-      })
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset()
-      this.teacherOptions = []
-      this.teacherOptions.push({
-        name: 'teacher_1',
-        value: '7:teacher_1'
-      })
-      this.teacherOptions.push({
-        name: 'codeMagic',
-        value: '1:codeMagic'
-      })
 
       const userId = row.userId || this.ids
       getUser(userId).then(response => {
@@ -605,7 +565,8 @@ export default {
         this.open = true
         this.title = '修改用户'
         this.form.password = ''
-        // this.form.teacher = response.data.teacherName
+        this.form.teacherName = ''
+        this.form.teacherId = 0
       })
       listPost({ pageSize: 1000 }).then(response => {
         this.postOptions = response.data.list

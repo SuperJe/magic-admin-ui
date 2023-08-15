@@ -53,9 +53,6 @@
             <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.dungeon)>
               <span slot="term">完成 </span>
             </trend>
-            <trend flag="bottom" :rate=this.progressLeft(this.allData.camp_progressions.dungeon)>
-              <span slot="term">剩余 </span>
-            </trend>
           </template>
         </chart-card>
       </el-col>
@@ -70,9 +67,6 @@
           <template slot="footer">
             <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.forrest)>
               <span slot="term">完成 </span>
-            </trend>
-            <trend flag="bottom" :rate=this.progressLeft(this.allData.camp_progressions.forrest)>
-              <span slot="term">剩余 </span>
             </trend>
           </template>
         </chart-card>
@@ -89,9 +83,6 @@
             <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.desert)>
               <span slot="term">完成 </span>
             </trend>
-            <trend flag="bottom" :rate=this.progressLeft(this.allData.camp_progressions.desert)>
-              <span slot="term">剩余 </span>
-            </trend>
           </template>
         </chart-card>
       </el-col>
@@ -106,9 +97,6 @@
           <template slot="footer">
             <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.mountain)>
               <span slot="term">完成 </span>
-            </trend>
-            <trend flag="top" :rate=this.progressLeft(this.allData.camp_progressions.mountain)>
-              <span slot="term">剩余 </span>
             </trend>
           </template>
         </chart-card>
@@ -125,9 +113,6 @@
             <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.glacier)>
               <span slot="term">完成 </span>
             </trend>
-            <trend flag="top" :rate=this.progressLeft(this.allData.camp_progressions.glacier)>
-              <span slot="term">剩余 </span>
-            </trend>
           </template>
         </chart-card>
       </el-col>
@@ -136,16 +121,23 @@
     <el-card :bordered="false" :body-style="{padding: '0'}">
       <div class="salesCard">
         <el-tabs>
-          <el-tab-pane label="销售额">
+          <el-tab-pane label="能力分析">
             <el-row>
-              <el-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-                <bar :list="barData" title="销售额排行" />
+              <el-col :xl="10" :lg="8" :md="12" :sm="24" :xs="24">
+                <RaddarChart :className="chartClassName" :indicator="indicatorData" :legendData="legendData" :seriesData="seriesData" />
               </el-col>
-              <el-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                <rank-list title="门店销售排行榜" :list="rankList" />
+              <el-col :xl="10" :lg="8" :md="12" :sm="24" :xs="24">
+                <rank-list title="最擅长:" :list="rankList" />
+              </el-col>
+              <el-col :xl="8" :lg="6" :md="10" :sm="12" :xs="12">
+                <div class="text-container">
+                  <span style="font-size: 16px; font-weight: bold; color: black"><br>分析结果：<br><br><br></span>
+                  <span style="font-size: 14px; color: #251b1b">{{ remark }}</span>
+                </div>
               </el-col>
             </el-row>
           </el-tab-pane>
+          <!--
           <el-tab-pane label="访问量">
             <el-row>
               <el-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
@@ -156,6 +148,7 @@
               </el-col>
             </el-row>
           </el-tab-pane>
+          -->
         </el-tabs>
       </div>
     </el-card>
@@ -164,14 +157,16 @@
 </template>
 
 <script>
-import {allDashboard} from '@/api/admin/dashboard'
+import { allDashboard } from '@/api/admin/dashboard'
 import ChartCard from '@/components/ChartCard'
 import Trend from '@/components/Trend'
-import MiniArea from '@/components/MiniArea'
-import MiniBar from '@/components/MiniBar'
+// import MiniArea from '@/components/MiniArea'
+// import MiniBar from '@/components/MiniBar'
 import MiniProgress from '@/components/MiniProgress'
 import RankList from '@/components/RankList/index'
 import Bar from '@/components/Bar.vue'
+import RaddarChart from './components/RaddarChart.vue'
+import { resolveBlob } from '@/utils/zipdownload'
 
 const barData = []
 const barData2 = []
@@ -187,10 +182,18 @@ for (let i = 0; i < 12; i += 1) {
 }
 
 const rankList = []
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < 1; i++) {
   rankList.push({
-    name: '白鹭岛 ' + (i + 1) + ' 号店',
-    total: 1234.56 - i * 100
+    name: '算法',
+    total: '1.5分'
+  })
+  rankList.push({
+    name: '逻辑',
+    total: '1.2分'
+  })
+  rankList.push({
+    name: '思维',
+    total: '1.0分'
   })
 }
 
@@ -199,42 +202,65 @@ export default {
   components: {
     ChartCard,
     Trend,
-    MiniArea,
-    MiniBar,
+    // MiniArea,
+    // MiniBar,
     MiniProgress,
     RankList,
+    RaddarChart,
     Bar
   },
   data() {
     return {
+      chartClassName: 'custom-chart',
+      chartWidth: '800px',
+      chartHeight: '600px',
+      remark: '',
       barData,
       barData2,
       rankList,
-      allData:undefined,
+      allData: undefined,
+      indicatorData: [
+        { name: '基础', max: 10000 },
+        { name: '字符串', max: 20000 },
+        { name: '算法', max: 20000 },
+        { name: '条件分支', max: 20000 },
+        { name: '逻辑', max: 20000 },
+        { name: '思维', max: 20000 }
+      ],
+      legendData: ['当前级别:L1', '目标级别:L2'],
+      seriesData: [
+        { value: [5000, 7000, 12000, 11000, 15000, 14000],
+          name: '当前级别:L1'
+        },
+        {
+          value: [5500, 11000, 12000, 15000, 12000, 12000],
+          name: '目标级别:L2'
+        }
+      ]
     }
   },
   created() {
     this.getAll()
   },
   methods: {
-      getAll() {
-          this.loading = true
-          allDashboard().then(response => {
-              this.allData = response.data
-              console.log("test this.allData.camp_progressions:", this.allData.camp_progressions)
-          }
-        )
-      },
-      progress(p) {
-        return (100*(p.done/p.total)).toFixed(2)
-      },
-      progressLeft(p) {
-        return (100-this.progress(p)).toFixed(2)
-      },
-      progressName(p) {
-        return p.done + "/" + p.total
-      }
+    getAll() {
+      this.loading = true
+      allDashboard().then(response => {
+        this.allData = response.data
+        this.remark = response.data.remark
+      })
+    },
+
+    progress(p) {
+      return (100 * (p.done / p.total)).toFixed(2)
+    },
+    progressLeft(p) {
+      return (100 - this.progress(p)).toFixed(2)
+    },
+    progressName(p) {
+      return p.done + '/' + p.total
     }
+  }
 }
 </script>
 
@@ -252,10 +278,20 @@ export default {
   }
 
   .chart-wrapper {
-    background: #fff;
+    background: #130f0f;
     padding: 16px 16px 0;
     margin-bottom: 32px;
   }
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  // display: flex;
+  // justify-content: left;
+  // align-items: left;
+  // height: 10vh;
+  // background-color: #f8f8f8;
 }
 
 ::v-deep .el-tabs__item{

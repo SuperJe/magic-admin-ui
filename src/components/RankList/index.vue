@@ -58,6 +58,7 @@ export default {
           }
           &:last-child {
             float: right;
+            margin-right: 35%;
           }
         }
       }

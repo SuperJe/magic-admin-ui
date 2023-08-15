@@ -14,7 +14,7 @@ The front-end and back-end separation authority management system based on Gin +
 [documentation](https://doc.go-admin.dev)
 
 [Backend project](https://github.com/go-admin-team/go-admin)
-
+npm install --registry=https://registry.npm.taobao.org
 [Video tutorial](https://space.bilibili.com/565616721/channel/detail?cid=125737)
 
 ## ✨ Feature
