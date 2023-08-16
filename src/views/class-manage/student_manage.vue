@@ -389,7 +389,7 @@ export default {
         phone: undefined,
         status: undefined,
         deptId: undefined,
-        teacher: store.getters.name
+        teacherId: store.getters.uid
       },
       // 表单校验
       rules: {

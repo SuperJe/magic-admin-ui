@@ -10,7 +10,8 @@ const state = {
   introduction: '',
   roles: [],
   permissions: [],
-  permisaction: []
+  permisaction: [],
+  uid: 0
 }
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_UID: (state, uid) => {
+    state.uid = uid
   },
   SET_AVATAR: (state, avatar) => {
     if (avatar.indexOf('http') !== -1) {
@@ -63,7 +67,7 @@ const actions = {
           resolve()
         }
 
-        const { roles, name, avatar, introduction, permissions } = response.data
+        const { roles, name, avatar, introduction, permissions, userId } = response.data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
@@ -72,6 +76,7 @@ const actions = {
         commit('SET_PERMISSIONS', permissions)
         commit('SET_ROLES', roles)
         commit('SET_NAME', name)
+        commit('SET_UID', userId)
         commit('SET_AVATAR', avatar)
         commit('SET_INTRODUCTION', introduction)
         resolve(response)
