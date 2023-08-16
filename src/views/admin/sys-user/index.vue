@@ -578,12 +578,12 @@ export default {
       this.form.password = this.initPassword
       this.teacherOptions = []
       this.teacherOptions.push({
-        name: 'will',
-        value: '2:will'
+        name: 'Director Yan',
+        value: '4:Director Yan'
       })
       this.teacherOptions.push({
-        name: 'codeMagic',
-        value: '1:codeMagic'
+        name: 'Will Yue',
+        value: '5:Will Yue'
       })
     },
     /** 修改按钮操作 */
@@ -591,12 +591,12 @@ export default {
       this.reset()
       this.teacherOptions = []
       this.teacherOptions.push({
-        name: 'teacher_1',
-        value: '7:teacher_1'
+        name: 'Director Yan',
+        value: '4:Director Yan'
       })
       this.teacherOptions.push({
-        name: 'codeMagic',
-        value: '1:codeMagic'
+        name: 'Will Yue',
+        value: '5:Will Yue'
       })
 
       const userId = row.userId || this.ids
