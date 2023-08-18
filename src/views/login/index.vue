@@ -29,7 +29,7 @@
       </div>
       <div class="login-border">
         <div class="login-main">
-          <div class="login-title">用户登录</div>
+          <div class="login-title">请登录</div>
           <el-form
             ref="loginForm"
             :model="loginForm"
@@ -127,6 +127,7 @@
             <el-button
               :loading="loading"
               type="primary"
+              plain
               style="width: 100%; padding: 12px 20px; margin-bottom: 30px"
               @click.native.prevent="handleLogin"
             >
@@ -473,7 +474,7 @@ $cursor: #fff;
   height: 100%;
   margin: 0 auto;
   background: url("../../assets/login.png") no-repeat;
-  background-color: #0e6cff;
+  background-color: #acc4ef;
   position: relative;
   background-size: cover;
   height: 100vh;
@@ -522,7 +523,7 @@ $cursor: #fff;
     left: 25px;
     top: 25px;
     width: 100%;
-    color: #fff;
+    color: #173d34;
     opacity: 0.9;
     font-size: 18px;
     overflow: hidden;
@@ -538,7 +539,7 @@ $cursor: #fff;
 
 .login-left .title {
   text-align: center;
-  color: #fff;
+  color: #173d34;
   letter-spacing: 2px;
   font-size: 16px;
   font-weight: 600;
@@ -568,7 +569,7 @@ $cursor: #fff;
 }
 
 .login-title {
-  color: #333;
+  color: #173d34;
   margin-bottom: 40px;
   font-weight: 500;
   font-size: 22px;
