@@ -131,7 +131,7 @@
               </el-col>
               <el-col :xl="8" :lg="6" :md="10" :sm="12" :xs="12">
                 <div class="text-container">
-                  <span style="font-size: 16px; font-weight: bold; color: black"><br>分析结果：<br><br><br></span>
+                  <span style="font-size: 16px; font-weight: bold; color: black"><br>寄语：<br><br><br></span>
                   <span style="font-size: 14px; color: #251b1b">{{ remark }}</span>
                 </div>
               </el-col>

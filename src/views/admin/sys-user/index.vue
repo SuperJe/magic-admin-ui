@@ -237,7 +237,7 @@
             </el-col>
             <el-col :span="12">
               <el-form-item label="所属教师">
-                <el-select v-model="form.teacherName" placeholder="请选择" @change="$forceUpdate()">
+                <el-select v-model="form.teacherId" placeholder="请选择" @change="$forceUpdate()">
                   <el-option
                     v-for="item in teacherOptions"
                     :key="item.value"
@@ -539,7 +539,7 @@ export default {
         remark: undefined,
         postIds: undefined,
         roleIds: undefined,
-        teacherName: undefined,
+        teacherId: undefined,
         teacherOptions: []
       }
       this.resetForm('form')
@@ -579,11 +579,11 @@ export default {
       this.teacherOptions = []
       this.teacherOptions.push({
         name: 'Director Yan',
-        value: '4:Director Yan'
+        value: 7
       })
       this.teacherOptions.push({
         name: 'Will Yue',
-        value: '5:Will Yue'
+        value: 12
       })
     },
     /** 修改按钮操作 */
@@ -592,11 +592,11 @@ export default {
       this.teacherOptions = []
       this.teacherOptions.push({
         name: 'Director Yan',
-        value: '4:Director Yan'
+        value: 7
       })
       this.teacherOptions.push({
         name: 'Will Yue',
-        value: '5:Will Yue'
+        value: 12
       })
 
       const userId = row.userId || this.ids
@@ -605,7 +605,6 @@ export default {
         this.open = true
         this.title = '修改用户'
         this.form.password = ''
-        // this.form.teacher = response.data.teacherName
       })
       listPost({ pageSize: 1000 }).then(response => {
         this.postOptions = response.data.list
@@ -634,6 +633,7 @@ export default {
       this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.userId !== undefined) {
+            this.form.teacherName = undefined
             updateUser(this.form).then(response => {
               if (response.code === 200) {
                 this.msgSuccess(response.msg)
