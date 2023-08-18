@@ -579,11 +579,11 @@ export default {
       this.teacherOptions = []
       this.teacherOptions.push({
         name: 'Director Yan',
-        value: 7
+        value: 4
       })
       this.teacherOptions.push({
         name: 'Will Yue',
-        value: 12
+        value: 5
       })
     },
     /** 修改按钮操作 */
@@ -592,11 +592,11 @@ export default {
       this.teacherOptions = []
       this.teacherOptions.push({
         name: 'Director Yan',
-        value: 7
+        value: 4
       })
       this.teacherOptions.push({
         name: 'Will Yue',
-        value: 12
+        value: 5
       })
 
       const userId = row.userId || this.ids
