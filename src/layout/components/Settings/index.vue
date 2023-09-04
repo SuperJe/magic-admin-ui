@@ -44,17 +44,17 @@
 
         <div class="drawer-item">
           <span>开启 TopNav</span>
-          <el-switch v-model="topNav" class="drawer-switch" />
+          <el-switch v-model="topNav" class="drawer-switch" disabled="true" />
         </div>
 
         <div class="drawer-item">
           <span>开启任务栏</span>
-          <el-switch v-model="tagsView" :active-color="activeColor" class="drawer-switch" />
+          <el-switch v-model="tagsView" :active-color="activeColor" class="drawer-switch" disabled="true" />
         </div>
 
         <div class="drawer-item">
           <span>Header 固定</span>
-          <el-switch v-model="fixedHeader" :active-color="activeColor" class="drawer-switch" />
+          <el-switch v-model="fixedHeader" :active-color="activeColor" class="drawer-switch" disabled="true" />
         </div>
 
         <div class="drawer-item">

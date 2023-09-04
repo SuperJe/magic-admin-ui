@@ -73,7 +73,7 @@ export default {
     }
   }
   .cell-item-value{
-    color: #969799;
+    color: #162f5f;
   }
 }
 

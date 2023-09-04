@@ -42,7 +42,7 @@
       </el-col>
     -->
       <el-col :sm="24" :xs="24" :md="4" :xl="4" :lg="4" :style="{ marginBottom: '12px' }">
-        <chart-card title="地牢" :total = this.progressName(this.allData.camp_progressions.dungeon) >
+        <chart-card title="地牢" :total="this.progressName(this.allData.camp_progressions.dungeon)">
           <el-tooltip slot="action" class="item" effect="dark" content="指标说明" placement="top-start">
             <i class="el-icon-warning-outline" />
           </el-tooltip>
@@ -50,14 +50,14 @@
             <mini-progress color="rgb(139,69,19)" :target="100" :percentage="this.progress(this.allData.camp_progressions.dungeon)" height="8px" />
           </div>
           <template slot="footer">
-            <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.dungeon)>
+            <trend flag="top" style="margin-right: 16px;" :rate="this.progress(this.allData.camp_progressions.dungeon)">
               <span slot="term">完成 </span>
             </trend>
           </template>
         </chart-card>
       </el-col>
       <el-col :sm="24" :xs="24" :md="5" :xl="5" :lg="5" :style="{ marginBottom: '12px' }">
-        <chart-card title="森林" :total=this.progressName(this.allData.camp_progressions.forrest)>
+        <chart-card title="森林" :total="this.progressName(this.allData.camp_progressions.forrest)">
           <el-tooltip slot="action" class="item" effect="dark" content="指标说明" placement="top-start">
             <i class="el-icon-warning-outline" />
           </el-tooltip>
@@ -65,14 +65,14 @@
             <mini-progress color="rgb(127,255,0)" :target="100" :percentage="this.progress(this.allData.camp_progressions.forrest)" height="8px" />
           </div>
           <template slot="footer">
-            <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.forrest)>
+            <trend flag="top" style="margin-right: 16px;" :rate="this.progress(this.allData.camp_progressions.forrest)">
               <span slot="term">完成 </span>
             </trend>
           </template>
         </chart-card>
       </el-col>
       <el-col :sm="24" :xs="24" :md="5" :xl="5" :lg="5" :style="{ marginBottom: '12px' }">
-        <chart-card title="沙漠" :total=this.progressName(this.allData.camp_progressions.desert)>
+        <chart-card title="沙漠" :total="this.progressName(this.allData.camp_progressions.desert)">
           <el-tooltip slot="action" class="item" effect="dark" content="指标说明" placement="top-start">
             <i class="el-icon-warning-outline" />
           </el-tooltip>
@@ -80,14 +80,14 @@
             <mini-progress color="rgb(255,215,0)" :target="100" :percentage="this.progress(this.allData.camp_progressions.desert)" height="8px" />
           </div>
           <template slot="footer">
-            <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.desert)>
+            <trend flag="top" style="margin-right: 16px;" :rate="this.progress(this.allData.camp_progressions.desert)">
               <span slot="term">完成 </span>
             </trend>
           </template>
         </chart-card>
       </el-col>
       <el-col :sm="24" :xs="24" :md="5" :xl="5" :lg="5" :style="{ marginBottom: '12px' }">
-        <chart-card title="山峰" :total=this.progressName(this.allData.camp_progressions.mountain)>
+        <chart-card title="山峰" :total="this.progressName(this.allData.camp_progressions.mountain)">
           <el-tooltip slot="action" class="item" effect="dark" content="指标说明" placement="top-start">
             <i class="el-icon-warning-outline" />
           </el-tooltip>
@@ -95,14 +95,14 @@
             <mini-progress color="rgb(238,207,161)" :target="100" :percentage="this.progress(this.allData.camp_progressions.mountain)" height="8px" />
           </div>
           <template slot="footer">
-            <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.mountain)>
+            <trend flag="top" style="margin-right: 16px;" :rate="this.progress(this.allData.camp_progressions.mountain)">
               <span slot="term">完成 </span>
             </trend>
           </template>
         </chart-card>
       </el-col>
       <el-col :sm="24" :xs="24" :md="5" :xl="5" :lg="5" :style="{ marginBottom: '12px' }">
-        <chart-card title="冰川" :total=this.progressName(this.allData.camp_progressions.glacier)>
+        <chart-card title="冰川" :total="this.progressName(this.allData.camp_progressions.glacier)">
           <el-tooltip slot="action" class="item" effect="dark" content="指标说明" placement="top-start">
             <i class="el-icon-warning-outline" />
           </el-tooltip>
@@ -110,7 +110,7 @@
             <mini-progress color="rgb(99,184,255)" :target="100" :percentage="this.progress(this.allData.camp_progressions.glacier)" height="8px" />
           </div>
           <template slot="footer">
-            <trend flag="top" style="margin-right: 16px;" :rate=this.progress(this.allData.camp_progressions.glacier)>
+            <trend flag="top" style="margin-right: 16px;" :rate="this.progress(this.allData.camp_progressions.glacier)">
               <span slot="term">完成 </span>
             </trend>
           </template>
@@ -124,14 +124,14 @@
           <el-tab-pane label="能力分析">
             <el-row>
               <el-col :xl="10" :lg="8" :md="12" :sm="24" :xs="24">
-                <RaddarChart :className="chartClassName" :indicator="indicatorData" :legendData="legendData" :seriesData="seriesData" />
+                <RaddarChart :class-name="chartClassName" :indicator="indicatorData" :legend-data="legendData" :series-data="seriesData" />
               </el-col>
               <el-col :xl="10" :lg="8" :md="12" :sm="24" :xs="24">
                 <rank-list title="最擅长:" :list="rankList" />
               </el-col>
               <el-col :xl="8" :lg="6" :md="10" :sm="12" :xs="12">
                 <div class="text-container">
-                  <span style="font-size: 16px; font-weight: bold; color: black"><br>寄语：<br><br><br></span>
+                  <span style="font-size: 16px; font-weight: bold; color: black"><br>智能分析结果：<br><br><br></span>
                   <span style="font-size: 14px; color: #251b1b">{{ remark }}</span>
                 </div>
               </el-col>
@@ -152,7 +152,6 @@
         </el-tabs>
       </div>
     </el-card>
-
   </div>
 </template>
 
@@ -164,9 +163,7 @@ import Trend from '@/components/Trend'
 // import MiniBar from '@/components/MiniBar'
 import MiniProgress from '@/components/MiniProgress'
 import RankList from '@/components/RankList/index'
-import Bar from '@/components/Bar.vue'
 import RaddarChart from './components/RaddarChart.vue'
-import { resolveBlob } from '@/utils/zipdownload'
 
 const barData = []
 const barData2 = []
@@ -206,8 +203,7 @@ export default {
     // MiniBar,
     MiniProgress,
     RankList,
-    RaddarChart,
-    Bar
+    RaddarChart
   },
   data() {
     return {
