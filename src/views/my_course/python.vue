@@ -9,7 +9,7 @@
             </div>
             <div style="overflow-wrap: break-word;">
               <div class="text-center">
-                <img src="../../assets/courses/python-course-rec.jpg" width="100%" height="100%" object-fit="cover" alt="学python, 就到CodeTuring!">
+                <img src="../../assets/courses/python-course.jpg" width="100%" height="100%" object-fit="cover" alt="学python, 就到CodeTuring!">
               </div>
               <ul class="list-group list-group-striped" style="overflow-wrap: break-word;">
                 <li class="list-group-item">

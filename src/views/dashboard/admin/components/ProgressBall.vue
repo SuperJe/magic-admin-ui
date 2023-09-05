@@ -28,16 +28,6 @@ export default {
       default: '460px'
     }
   },
-  data() {
-    return {
-      ballPercent: ''
-    }
-  },
-  created() {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', this.hasSigned, this.text, this.will, this.ballWidth)
-    const n = parseInt(((100 - parseInt(this.ballWidth)) * 36 / 5), 10)
-    this.ballPercent = n + 'px'
-  },
   methods: {
     sign() {
       // 只有在 has_signed 为 false（未签到）时才能发送请求
