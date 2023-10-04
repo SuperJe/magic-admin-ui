@@ -178,6 +178,14 @@
         </div>
       </div>
     </div>
+    <div class="logos">
+      <img src="../../assets/logo/turingRabbit.pic.png" alt="专业又有趣">
+      <b><br><br>&#20;&#20;X&#20;&#20;</b>
+      <img src="../../assets/logo/smxh.png" alt="专业又有趣">
+      <div class="co-coding">
+        <p style="color:#173d34">兔小灵&#20;X&#20;水木莘华联合品牌</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -461,6 +469,24 @@ $cursor: #fff;
 .footer {
   background-color: #0e6cff;
   margin-bottom: -20px;
+}
+
+.co-coding {
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  bottom: -3vh;
+  left: 50%;
+  font-size: 6px;
+  transform: translateX(-50%);
+}
+
+.logos {
+  display: flex;
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .login-container {
