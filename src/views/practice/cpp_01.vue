@@ -17,6 +17,7 @@
         <textarea v-model="question.code" class="form-control code-textarea" placeholder="在这里写你的代码..." />
       </div>
       <button class="submit-btn" :disabled="isButtonDisabled" @click="submitCode(question.code, index)">{{ buttonText }}</button>
+      <p style="color:gray; font-style:italic;">{{ question.statusMsg }}</p>
       <div v-if="question.result !== null" class="mt-3" :class="{ 'result-success': question.result, 'result-failure': !question.result }">
         <transition name="fade">
           <p v-if="question.result" class="result-text">答案正确！🚀</p>
@@ -99,6 +100,7 @@
 
   .result-failure {
     color: #dc3545;
+    font-weight: normal;
   }
 
   .result-text {
@@ -144,15 +146,15 @@ export default {
   data() {
     return {
       questions: [
-        { id: 1, title: '1. 整型数据类型存储空间大小', description: '分别定义int，short类型的变量各一个，并依次输出它们的存储空间大小（单位：字节）, 每个输出单独一行。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null },
-        { id: 2, title: '2. 浮点型数据类型存储空间大小：', description: '分别定义float，double类型的变量各一个，并依次输出它们的存储空间大小（单位：字节），每个输出以空格隔开。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null },
-        { id: 3, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null },
-        { id: 4, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null },
-        { id: 5, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null },
-        { id: 6, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null }
+        { id: 1, title: '1. 整型数据类型存储空间大小', description: '分别定义int，short类型的变量各一个，并依次输出它们的存储空间大小（单位：字节）, 每个输出单独一行。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 2, title: '2. 浮点型数据类型存储空间大小：', description: '分别定义float，double类型的变量各一个，并依次输出它们的存储空间大小（单位：字节），每个输出以空格隔开。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 3, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 4, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 5, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 6, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' }
         // Add more questions with descriptions, input examples, and output examples as needed
       ],
-      lastCodes: {},
+      lastDetails: {},
       isInputHighlighted: true,
       isOutputHighlighted: true,
       isButtonDisabled: false,
@@ -168,6 +170,7 @@ export default {
       this.isButtonDisabled = true
       this.buttonText = '提交中...'
       this.questions[index].errMsg = ''
+      this.questions[index].statusMsg = ''
 
       const req = { id: index + 1, code: code }
       submitPracticeCode(JSON.stringify(req)).then(response => {
@@ -180,22 +183,25 @@ export default {
         this.isButtonDisabled = false
         this.buttonText = '提交'
       })
-      console.log('req:', JSON.stringify(req))
     },
     getLastCode() {
       var ids = []
       for (var i = 0; i < this.questions.length; i++) {
         ids.push(this.questions[i].id)
       }
-      console.log('ids:', JSON.stringify(ids))
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
-        this.lastCodes = response.data.codes
-        console.log('last codes:', this.lastCodes, this.lastCodes['1'])
-        this.questions[0].code = this.lastCodes['1']
-        this.questions[1].code = this.lastCodes['2']
-        this.questions[2].code = this.lastCodes['3']
-        this.questions[3].code = this.lastCodes['4']
-        this.questions[4].code = this.lastCodes['5']
+        this.lastDetails = response.data.details
+        console.log('details:', this.lastDetails)
+        this.questions[0].code = this.lastDetails['1'].code
+        this.questions[0].statusMsg = this.lastDetails['1'].msg
+        this.questions[1].code = this.lastDetails['2'].code
+        this.questions[1].statusMsg = this.lastDetails['2'].msg
+        this.questions[2].code = this.lastDetails['3'].code
+        this.questions[2].statusMsg = this.lastDetails['3'].msg
+        this.questions[3].code = this.lastDetails['4'].code
+        this.questions[3].statusMsg = this.lastDetails['4'].msg
+        this.questions[4].code = this.lastDetails['5'].code
+        this.questions[4].statusMsg = this.lastDetails['5'].msg
       })
     }
   }
