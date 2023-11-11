@@ -30,7 +30,7 @@
                 </li>
                 <li class="list-group-item">
                   <svg-icon icon-class="people" />授课老师
-                  <div class="pull-right">颜总监</div>
+                  <div class="pull-right">颜老师</div>
                 </li>
                 <li class="list-group-item">
                   <svg-icon icon-class="phone" />教师电话
@@ -163,10 +163,10 @@ export default {
           date = this.learnd_records[this.learnd_records.length - 1].date.substring(0, 10)
         }
         if (date === tm) {
-          this.progressBallText = '第' + this.learnd_records.length + '课时已签到'
+          this.progressBallText = '第' + this.learnd_records.length + '次课已签到'
           this.hasSigned = true
         } else {
-          this.progressBallText = '第' + (this.learnd_records.length + 1) + '课时未签到'
+          this.progressBallText = '第' + (this.learnd_records.length + 1) + '次课未签到'
         }
       })
     },

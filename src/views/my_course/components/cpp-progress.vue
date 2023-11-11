@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      progressLabels: ['语法', '数据结构', '数据库基础', '网络编程', '实战项目'],
+      progressLabels: ['语法', '数据结构', '算法入门', '算法进阶', '综合实践'],
       progressPoints: [20, 40, 60, 80],
       progressBarWidth: 0
     }

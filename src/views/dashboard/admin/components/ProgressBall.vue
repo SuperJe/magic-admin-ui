@@ -39,7 +39,7 @@ export default {
       data.course_type = this.courseType
       signLesson(data).then(response => {
         this.hasSigned = true
-        this.text = '第' + response.data.learned_lessons + '课时已签到'
+        this.text = '第' + response.data.learned_lessons + '次课已签到'
       })
     }
   }
