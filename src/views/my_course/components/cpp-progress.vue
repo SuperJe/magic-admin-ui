@@ -20,7 +20,7 @@ export default {
   props: {
     initialProgressBarWidth: {
       type: String,
-      default: '40'
+      default: '0'
     }
   },
   data() {
@@ -41,7 +41,7 @@ export default {
         } else {
           this.progressBarWidth++
         }
-      }, 20) // 每30毫秒增加一点进度
+      }, 5) // 每5毫秒增加一点进度
     }
   }
 }
