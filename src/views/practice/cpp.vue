@@ -28,16 +28,17 @@ export default {
         },
         {
           title: '第2讲： 程序的基本结构1',
-          questions: ['问题4', '问题5']
+          questions: ['👉 顺序结构', '👉 条件语句', '👉 四则运算']
         },
         {
-          title: '第1课时课后作业',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第3讲: 程序的基本结构2',
+          questions: ['👉 分支结构', '👉 选择结构']
         },
         {
-          title: '第2课时课后作业',
-          questions: ['问题4', '问题5']
-        },
+          title: '第4讲: 循环',
+          questions: ['👉 switch语句', '👉 for循环', '👉 while循环']
+        }
+        /*
         {
           title: '第1课时课后作业',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
@@ -86,6 +87,7 @@ export default {
           title: '第2课时课后作业',
           questions: ['问题4', '问题5']
         }
+        */
       ]
     }
   },

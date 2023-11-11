@@ -36,6 +36,7 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    white-space: pre-wrap;
   }
 
   .question:hover {
@@ -148,11 +149,9 @@ export default {
       questions: [
         { id: 1, title: '1. 整型数据类型存储空间大小', description: '分别定义int，short类型的变量各一个，并依次输出它们的存储空间大小（单位：字节）, 每个输出单独一行。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 2, title: '2. 浮点型数据类型存储空间大小：', description: '分别定义float，double类型的变量各一个，并依次输出它们的存储空间大小（单位：字节），每个输出以空格隔开。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 3, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 4, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 5, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 6, title: '问题1：', description: '这是第一个问题的描述。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' }
-        // Add more questions with descriptions, input examples, and output examples as needed
+        { id: 3, title: '3. 其他基本数据类型存储空间大小', description: '分别定义bool，char类型的变量各一个，并依次输出它们的存储空间大小（单位：字节）。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 4, title: '4. 类型转换1', description: '有两个变量a和b，在执行了如下代码后：\n\na = 32768\;\nb = a\;\nprintf("%d %d\\n", a, b)\;\n\n输出两个数：32768 -32768\n\n请问a和b分别是以下哪种类型？\nA. bool   B. char   C. short   D. int   E. float   F. double', inputExample: '(无)', outputExample: '输出你的选择，以空格隔开, 如： A B', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 5, title: '5. 类型转换2', description: '有两个变量a和b，在执行了如下代码后：\n\na = 1.000000001;\nb = a;\nprintf("%.9f %.9f\\n", a, b);\n\n输出两个数：1.000000001 1.000000000\n\n请问a和b分别是以下哪种类型？\nA. bool   B. char   C. short   D. int   E. float   F. double', inputExample: '(无)', outputExample: '输出你的选择，以空格隔开, 如： A B', code: '', result: null, errMsg: null, statusMsg: '' }
       ],
       lastDetails: {},
       isInputHighlighted: true,
@@ -191,7 +190,6 @@ export default {
       }
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
         this.lastDetails = response.data.details
-        console.log('details:', this.lastDetails)
         this.questions[0].code = this.lastDetails['1'].code
         this.questions[0].statusMsg = this.lastDetails['1'].msg
         this.questions[1].code = this.lastDetails['2'].code

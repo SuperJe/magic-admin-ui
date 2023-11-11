@@ -89,6 +89,21 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/practice/cpp_02',
+    component: () => import('@/views/practice/cpp_02'),
+    hidden: true
+  },
+  {
+    path: '/practice/cpp_03',
+    component: () => import('@/views/practice/cpp_03'),
+    hidden: true
+  },
+  {
+    path: '/practice/cpp_04',
+    component: () => import('@/views/practice/cpp_04'),
+    hidden: true
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
