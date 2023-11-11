@@ -152,7 +152,7 @@ export default {
         this.progressWidth = ((this.completed_lesson_hours / response.data.total_lesson_hours) * 100).toFixed(2)
         this.IntprogressWidth = parseInt(this.progressWidth)
         this.ballWidth = parseInt(((100 - parseInt(this.progressWidth)) * 36 / 5), 10) + 'px'
-
+        console.log('==============', this.progressWidth, this.ballWidth, parseInt(((100 - parseInt(this.progressWidth)) * 36 / 5), 10))
         const today = new Date()
         const year = today.getFullYear()
         const month = String(today.getMonth() + 1).padStart(2, '0') // 月份从0开始，需要加1

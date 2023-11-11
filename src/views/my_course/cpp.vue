@@ -149,8 +149,9 @@ export default {
         this.learnd_records = response.data.records
         this.completed_lesson_hours = this.learnd_records.length
         this.progressWidth = ((this.completed_lesson_hours / response.data.total_lesson_hours) * 100).toFixed(2)
+        console.log('progressWitdh:', this.progressWidth, this.completed_lesson_hours, response.data.total_lesson_hours, ((this.completed_lesson_hours / response.data.total_lesson_hours) * 100).toFixed(2))
         this.ballWidth = parseInt(((100 - parseInt(this.progressWidth)) * 36 / 5), 10) + 'px'
-        console.log('=========================', this.progressWidth, this.intProgressWidth)
+        console.log('=======', this.progressWidth, this.ballWidth, parseInt(((100 - parseInt(this.progressWidth)) * 36 / 5), 10))
         const today = new Date()
         const year = today.getFullYear()
         const month = String(today.getMonth() + 1).padStart(2, '0') // 月份从0开始，需要加1
