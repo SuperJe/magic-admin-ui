@@ -1,6 +1,6 @@
 <template>
   <div class="progress-container">
-    <div class="progress-bar" :style="{ width: progressBarWidth + '%' }" />
+    <div class="progress-bar" :style="{ width: initialProgressBarWidth + '%' }" />
     <div
       v-for="(point, index) in progressPoints"
       :key="index"
@@ -41,7 +41,7 @@ export default {
         } else {
           this.progressBarWidth++
         }
-      }, 5) // 每5毫秒增加一点进度
+      }, 10) // 每5毫秒增加一点进度
     }
   }
 }
