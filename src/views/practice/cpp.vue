@@ -39,51 +39,51 @@ export default {
           questions: ['👉 switch语句', '👉 for循环', '👉 while循环']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         },
         {
-          title: '第1课时课后作业',
+          title: '待开放',
           questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
         },
         {
-          title: '第2课时课后作业',
+          title: '待开放',
           questions: ['问题4', '问题5']
         }
       ]
