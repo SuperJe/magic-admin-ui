@@ -179,11 +179,13 @@
       </div>
     </div>
     <div class="logos">
+      <!--
       <img src="../../assets/logo/turingRabbit.pic.png" alt="专业又有趣">
-      <b><br><br>&#20;&#20;X&#20;&#20;</b>
-      <img src="../../assets/logo/smxh.png" alt="专业又有趣">
+      <b><br><br>X</b>
+      <img src="../../assets/logo/smxh_yellow.jpg" style="width:10%; height:10%" alt="专业又有趣">
+      -->
       <div class="co-coding">
-        <p style="color:#173d34">兔小灵&#20;X&#20;水木莘华联合品牌</p>
+        <p style="color:#173d34; font-size: 30px">水木莘华兔小灵工作室</p>
       </div>
     </div>
   </div>
@@ -484,7 +486,8 @@ $cursor: #fff;
 .logos {
   display: flex;
   position: absolute;
-  bottom: 10vh;
+  font-weight: bold;
+  bottom: 13vh;
   left: 50%;
   transform: translateX(-50%);
 }
