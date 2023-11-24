@@ -104,6 +104,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/practice/gesp_01',
+    component: () => import('@/views/practice/gesp_01'),
+    hidden: true
+  },
+  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',

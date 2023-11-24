@@ -39,8 +39,8 @@ export default {
           questions: ['👉 switch语句', '👉 for循环', '👉 while循环']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: 'GESP一级集训',
+          questions: ['👉 循环', '👉 结构']
         },
         {
           title: '待开放',
@@ -92,6 +92,10 @@ export default {
   methods: {
     goToCardPage(index) {
       // your implementation for navigating to card page
+      if (index === 4) {
+        this.$router.push({ path: `/practice/gesp_01` })
+        return
+      }
       if (index > 3) {
         return
       }
