@@ -35,8 +35,8 @@ export default {
           questions: ['👉 分支结构', '👉 选择结构']
         },
         {
-          title: '第4讲: 循环',
-          questions: ['👉 switch语句', '👉 for循环', '👉 while循环']
+          title: '第4讲: 循环和数组',
+          questions: ['👉 switch语句', '👉 for循环', '👉 while循环', '👉 数组']
         },
         {
           title: 'GESP一级集训',

@@ -162,7 +162,14 @@ export default {
         { id: 52, title: '52.计算邮资', description: '根据邮件的重量和用户是否选择加急计算邮费。计算规则：重量在1000克以内(包括1000克), 基本费8元。超过1000克的部分，每500克加收超重费4元，不足500克部分按500克计算；如果用户选择加急，多收5元。\n 第一个输入为重量，第二个输入如果是y表示加急, 其他字符表示不加急。', inputExample: '1200 y', outputExample: '17', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 53, title: '53.简单计算器', description: '一个最简单的计算器，支持+, -, *, / 四种运算。仅需考虑输入输出为整数的情况，数据和运算结果不会超过int表示的范围。', inputExample: '1 2 +', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 54, title: '54.最大公约数', description: '求两个正整数m、n的最大公约数。', inputExample: '8 2', outputExample: '2', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 55, title: '55.运输费用', description: '运输公司需要对用户计算运输费用。输入每吨每千米的基本价格p，货物重量w吨，和路程s千米。路程越远，每吨·千米运费越低。p,w,s都是整数。标准如下： \ns < 250   没有折扣\n250  ≤ s < 500    2％折扣\n500  ≤ s < 1000    5％折扣\n1000 ≤ s < 2000    8％折扣\n2000 ≤ s < 3000  10％折扣\n3000 ≤ s  15％折扣\n结果保留2位小数。\n如果用if完成这题，可以挑战下用switch来做。\n', inputExample: '10 2 3', outputExample: '60', code: '', result: null, errMsg: null, statusMsg: '' }
+        { id: 55, title: '55.运输费用', description: '运输公司需要对用户计算运输费用。输入每吨每千米的基本价格p，货物重量w吨，和路程s千米。路程越远，每吨·千米运费越低。p,w,s都是整数。标准如下： \ns < 250   没有折扣\n250  ≤ s < 500    2％折扣\n500  ≤ s < 1000    5％折扣\n1000 ≤ s < 2000    8％折扣\n2000 ≤ s < 3000  10％折扣\n3000 ≤ s  15％折扣\n结果保留2位小数。\n如果用if完成这题，可以挑战下用switch来做。\n', inputExample: '10 2 3', outputExample: '60', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 56, title: '56.倒序输出', description: '输入5个数，以空格隔开倒序输出', inputExample: '1 2 3 4 5', outputExample: '5 4 3 2 1', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 57, title: '57.分苹果', description: '把一堆苹果分给n 个小朋友，要使每个人都能拿到苹果，而且每个人拿到的苹果数都不同的话，这堆苹果至少应该有多少个？', inputExample: '8', outputExample: '36', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 58, title: '58.最高的分数', description: 'n 个分数，求最高的那个。第一行输入一个n, 随后n行每行都是一个分数，输出最高的分数。', inputExample: '2\n60\n90', outputExample: '90', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 59, title: '59.求平均年龄', description: '求n名学生的平均年龄，第一行输入一个n表示学生人数，随后有n行，每行都是一个学生的年龄, 保留2位小数。', inputExample: '2\n18\n17', outputExample: '17.50', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 60, title: '60.满足条件的数累加', description: '输入m和n, m<=n, 求m到n中能被17整除的数的和是多少?', inputExample: '50 85', outputExample: '204', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 61, title: '61.含k个3的数', description: '输入两个正整数 m 和 k，判断m是否恰好含有 k 个 3，如果满足条件，则输出 YES，否则，输出 NO', inputExample: '43833 3', outputExample: 'YES', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 62, title: '62.数字统计', description: '输入两个正整数 l 和 r，计算l到r中数字2出现的个数。', inputExample: '2 22', outputExample: '6', code: '', result: null, errMsg: null, statusMsg: '' }
       ],
       lastDetails: {},
       isInputHighlighted: true,
