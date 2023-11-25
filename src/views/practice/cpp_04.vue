@@ -208,38 +208,95 @@ export default {
       }
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
         this.lastDetails = response.data.details
-        console.log('details:', this.lastDetails)
-
-        this.questions[0].code = this.lastDetails['41'].code
-        this.questions[0].statusMsg = this.lastDetails['41'].msg
-        this.questions[1].code = this.lastDetails['42'].code
-        this.questions[1].statusMsg = this.lastDetails['42'].msg
-        this.questions[2].code = this.lastDetails['43'].code
-        this.questions[2].statusMsg = this.lastDetails['43'].msg
-        this.questions[3].code = this.lastDetails['44'].code
-        this.questions[3].statusMsg = this.lastDetails['44'].msg
-        this.questions[4].code = this.lastDetails['45'].code
-        this.questions[4].statusMsg = this.lastDetails['45'].msg
-        this.questions[5].code = this.lastDetails['46'].code
-        this.questions[5].statusMsg = this.lastDetails['46'].msg
-        this.questions[6].code = this.lastDetails['47'].code
-        this.questions[6].statusMsg = this.lastDetails['47'].msg
-        this.questions[7].code = this.lastDetails['48'].code
-        this.questions[7].statusMsg = this.lastDetails['48'].msg
-        this.questions[8].code = this.lastDetails['49'].code
-        this.questions[8].statusMsg = this.lastDetails['49'].msg
-        this.questions[9].code = this.lastDetails['50'].code
-        this.questions[9].statusMsg = this.lastDetails['50'].msg
-        this.questions[10].code = this.lastDetails['59=1'].code
-        this.questions[10].statusMsg = this.lastDetails['51'].msg
-        this.questions[11].code = this.lastDetails['52'].code
-        this.questions[11].statusMsg = this.lastDetails['52'].msg
-        this.questions[12].code = this.lastDetails['53'].code
-        this.questions[12].statusMsg = this.lastDetails['53'].msg
-        this.questions[13].code = this.lastDetails['54'].code
-        this.questions[13].statusMsg = this.lastDetails['54'].msg
-        this.questions[14].code = this.lastDetails['55'].code
-        this.questions[14].statusMsg = this.lastDetails['55'].msg
+        console.log('details:', this.lastDetails, this.lastDetails['45'])
+        if (this.lastDetails['41'] !== undefined) {
+          this.questions[0].code = this.lastDetails['41'].code
+          this.questions[0].statusMsg = this.lastDetails['41'].msg
+        }
+        if (this.lastDetails['42'] !== undefined) {
+          this.questions[1].code = this.lastDetails['42'].code
+          this.questions[1].statusMsg = this.lastDetails['42'].msg
+        }
+        if (this.lastDetails['43'] !== undefined) {
+          this.questions[2].code = this.lastDetails['43'].code
+          this.questions[2].statusMsg = this.lastDetails['43'].msg
+        }
+        if (this.lastDetails['44'] !== undefined) {
+          this.questions[3].code = this.lastDetails['44'].code
+          this.questions[3].statusMsg = this.lastDetails['44'].msg
+        }
+        if (this.lastDetails['45'] !== undefined) {
+          this.questions[4].code = this.lastDetails['45'].code
+          this.questions[4].statusMsg = this.lastDetails['45'].msg
+        }
+        if (this.lastDetails['46'] !== undefined) {
+          this.questions[5].code = this.lastDetails['46'].code
+          this.questions[5].statusMsg = this.lastDetails['46'].msg
+        }
+        if (this.lastDetails['47'] !== undefined) {
+          this.questions[6].code = this.lastDetails['47'].code
+          this.questions[6].statusMsg = this.lastDetails['47'].msg
+        }
+        if (this.lastDetails['48'] !== undefined) {
+          this.questions[7].code = this.lastDetails['48'].code
+          this.questions[7].statusMsg = this.lastDetails['48'].msg
+        }
+        if (this.lastDetails['49'] !== undefined) {
+          this.questions[8].code = this.lastDetails['49'].code
+          this.questions[8].statusMsg = this.lastDetails['49'].msg
+        }
+        if (this.lastDetails['50'] !== undefined) {
+          this.questions[9].code = this.lastDetails['50'].code
+          this.questions[9].statusMsg = this.lastDetails['50'].msg
+        }
+        if (this.lastDetails['51'] !== undefined) {
+          this.questions[10].code = this.lastDetails['51'].code
+          this.questions[10].statusMsg = this.lastDetails['51'].msg
+        }
+        if (this.lastDetails['52'] !== undefined) {
+          this.questions[11].code = this.lastDetails['52'].code
+          this.questions[11].statusMsg = this.lastDetails['52'].msg
+        }
+        if (this.lastDetails['53'] !== undefined) {
+          this.questions[12].code = this.lastDetails['53'].code
+          this.questions[12].statusMsg = this.lastDetails['53'].msg
+        }
+        if (this.lastDetails['54'] !== undefined) {
+          this.questions[13].code = this.lastDetails['54'].code
+          this.questions[13].statusMsg = this.lastDetails['54'].msg
+        }
+        if (this.lastDetails['55'] !== undefined) {
+          this.questions[14].code = this.lastDetails['55'].code
+          this.questions[14].statusMsg = this.lastDetails['55'].msg
+        }
+        if (this.lastDetails['56'] !== undefined) {
+          this.questions[15].code = this.lastDetails['56'].code
+          this.questions[15].statusMsg = this.lastDetails['56'].msg
+        }
+        if (this.lastDetails['57'] !== undefined) {
+          this.questions[16].code = this.lastDetails['57'].code
+          this.questions[16].statusMsg = this.lastDetails['57'].msg
+        }
+        if (this.lastDetails['58'] !== undefined) {
+          this.questions[17].code = this.lastDetails['58'].code
+          this.questions[17].statusMsg = this.lastDetails['58'].msg
+        }
+        if (this.lastDetails['59'] !== undefined) {
+          this.questions[18].code = this.lastDetails['59'].code
+          this.questions[18].statusMsg = this.lastDetails['59'].msg
+        }
+        if (this.lastDetails['60'] !== undefined) {
+          this.questions[19].code = this.lastDetails['60'].code
+          this.questions[19].statusMsg = this.lastDetails['60'].msg
+        }
+        if (this.lastDetails['61'] !== undefined) {
+          this.questions[20].code = this.lastDetails['61'].code
+          this.questions[20].statusMsg = this.lastDetails['61'].msg
+        }
+        if (this.lastDetails['62'] !== undefined) {
+          this.questions[21].code = this.lastDetails['62'].code
+          this.questions[21].statusMsg = this.lastDetails['62'].msg
+        }
       })
     }
   }
