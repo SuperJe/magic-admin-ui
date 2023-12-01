@@ -191,12 +191,26 @@ export default {
       }
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
         this.lastDetails = response.data.details
-        this.questions[0].code = this.lastDetails['10001'].code
-        this.questions[0].statusMsg = this.lastDetails['10001'].msg
-        this.questions[1].code = this.lastDetails['10002'].code
-        this.questions[1].statusMsg = this.lastDetails['10002'].msg
-        this.questions[2].code = this.lastDetails['10003'].code
-        this.questions[2].statusMsg = this.lastDetails['10003'].msg
+        if (this.lastDetails['10001'] !== undefined) {
+          this.questions[0].code = this.lastDetails['10001'].code
+          this.questions[0].statusMsg = this.lastDetails['10001'].msg
+        }
+        if (this.lastDetails['10002'] !== undefined) {
+          this.questions[1].code = this.lastDetails['10002'].code
+          this.questions[1].statusMsg = this.lastDetails['10002'].msg
+        }
+        if (this.lastDetails['10003'] !== undefined) {
+          this.questions[2].code = this.lastDetails['10003'].code
+          this.questions[2].statusMsg = this.lastDetails['10003'].msg
+        }
+        if (this.lastDetails['10004'] !== undefined) {
+          this.questions[3].code = this.lastDetails['10004'].code
+          this.questions[3].statusMsg = this.lastDetails['10004'].msg
+        }
+        if (this.lastDetails['10005'] !== undefined) {
+          this.questions[4].code = this.lastDetails['10005'].code
+          this.questions[4].statusMsg = this.lastDetails['10005'].msg
+        }
       })
     }
   }
