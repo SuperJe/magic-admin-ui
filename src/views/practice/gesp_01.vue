@@ -215,6 +215,22 @@ export default {
           this.questions[4].code = this.lastDetails['10005'].code
           this.questions[4].statusMsg = this.lastDetails['10005'].msg
         }
+        if (this.lastDetails['10006'] !== undefined) {
+          this.questions[5].code = this.lastDetails['10006'].code
+          this.questions[5].statusMsg = this.lastDetails['10006'].msg
+        }
+        if (this.lastDetails['10007'] !== undefined) {
+          this.questions[6].code = this.lastDetails['10007'].code
+          this.questions[6].statusMsg = this.lastDetails['10007'].msg
+        }
+        if (this.lastDetails['10008'] !== undefined) {
+          this.questions[7].code = this.lastDetails['10008'].code
+          this.questions[7].statusMsg = this.lastDetails['10008'].msg
+        }
+        if (this.lastDetails['10009'] !== undefined) {
+          this.questions[8].code = this.lastDetails['10009'].code
+          this.questions[8].statusMsg = this.lastDetails['10009'].msg
+        }
       })
     }
   }
