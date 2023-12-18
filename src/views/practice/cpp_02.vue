@@ -56,6 +56,7 @@
     .question-description {
       margin-top: 10px;
       font-style: italic;
+      white-space: pre-wrap;
     }
 
     .question-input,
@@ -151,16 +152,16 @@ export default {
         { id: 8, title: '8. 计算(a+b)/c的值', description: '给定3个整数a、b、c，计算表达式(a+b)/c的值，/是整除运算。', inputExample: '1 1 3', outputExample: '0', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 9, title: '9. 带余除法', description: '给定被除数和除数，求整数商及余数。此题中请使用默认的整除和取余运算，无需对结果进行任何特殊处理。看看程序运行结果与数学上的定义有什么不同？', inputExample: '10 3', outputExample: '3 1', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 10, title: '10. 计算分数的浮点数值', description: '两个整数a和b分别作为分子和分母，既分数 a/b ，求它的浮点数值（双精度浮点数，保留小数点后9位）', inputExample: '5 7', outputExample: '0.714285714', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 11, title: '11. 甲流疫情死亡率', description: '甲流并不可怕，在中国，它的死亡率并不是很高。请根据截止2009年12月22日各省报告的甲流确诊数和死亡数，计算甲流在各省的死亡率。', inputExample: '10433 60', outputExample: '0.575%', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 12, title: '12. 温度表达转化', description: '利用公式 C = 5 * (F-32) / 9 （其中C表示摄氏温度，F表示华氏温度） 进行计算转化。', inputExample: '41', outputExample: '5.00000', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 11, title: '11. 甲流疫情死亡率', description: '甲流并不可怕，在中国，它的死亡率并不是很高。请根据截止2009年12月22日各省报告的甲流确诊数和死亡数，计算甲流在各省的死亡率。\n第一个数字为确诊人数，第二个数字是死亡人数。保留三位小数。', inputExample: '10433 60', outputExample: '0.575%', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 12, title: '12. 温度表达转化', description: '利用公式 C = 5 * (F-32) / 9 （其中C表示摄氏温度，F表示华氏温度） 进行计算转化。输入一个数字，表示F，结果保留5位小数。', inputExample: '41', outputExample: '5.00000', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 13, title: '13. 反向输出一个三位数', description: '将一个三位数反向输出。', inputExample: '100', outputExample: '001', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 14, title: '14. 大象喝水', description: '一只大象口渴了，要喝20升水才能解渴，但现在只有一个深h厘米，底面半径为r厘米的小圆桶(h和r都是整数)。问大象至少要喝多少桶水才会解渴。', inputExample: '23 11', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 15, title: '15. 苹果和虫子', description: '你买了一箱n个苹果，很不幸的是买完时箱子里混进了一条虫子。虫子每x小时能吃掉一个苹果，假设虫子在吃完一个苹果之前不会吃另一个，那么经过y小时你还有多少个完整的苹果？', inputExample: '10 4 9', outputExample: '7', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 16, title: '16. 计算线段长度', description: '已知线段的两个端点的坐标A（Xa,Ya），B（Xb，Yb），求线段AB的长度。', inputExample: '1 1 2 2', outputExample: '1.414', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 17, title: '17. 计算三角形面积', description: '平面上有一个三角形，它的三个顶点坐标分别为(x1, y1), (x2, y2), (x3, y3)，那么请问这个三角形的面积是多少。', inputExample: '0 0 4 0 0 3', outputExample: '6.00', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 18, title: '18. 等差数列末项计算', description: '给出一个等差数列的前两项a1，a2，求第n项是多少。', inputExample: '1 4 100', outputExample: '298', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 14, title: '14. 大象喝水(此题作废，直接跳过)', description: '一只大象口渴了，要喝20升水才能解渴，但现在只有一个深h厘米，底面半径为r厘米的小圆桶(h和r都是整数)。问大象至少要喝多少桶水才会解渴。', inputExample: '23 11', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 15, title: '15. 苹果和虫子', description: '你买了一箱n个苹果，很不幸的是买完时箱子里混进了一条虫子。虫子每x小时能吃掉一个苹果，假设虫子在吃完一个苹果之前不会吃另一个，那么经过y小时你还有多少个完整的苹果？\n输入三个数字，依次代表n x y, 输出还剩下多少个完整苹果。', inputExample: '10 4 9', outputExample: '7', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 16, title: '16. 计算线段长度', description: '已知线段的两个端点的坐标A（Xa,Ya），B（Xb，Yb），求线段AB的长度。\n输入四个数字，依次表示Xa, Ya, Xb, Yb, 结果保留三位小数。', inputExample: '1 1 2 2', outputExample: '1.414', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 17, title: '17. 计算三角形面积', description: '平面上有一个三角形，它的三个顶点坐标分别为(x1, y1), (x2, y2), (x3, y3)，那么请问这个三角形的面积是多少。\n输入6个数字，依次表示x1, y1, x2, y2, x3, y3, 结果保留2位小数。', inputExample: '0 0 4 0 0 3', outputExample: '6.00', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 18, title: '18. 等差数列末项计算', description: '给出一个等差数列的前两项a1，a2，求第n项是多少。\n输入3个数字，表示首项，第二项和n，输出第n项的值。', inputExample: '1 4 100', outputExample: '298', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 19, title: '19. A*B问题', description: '输入两个正整数A和B，求A*B。', inputExample: '3 4', outputExample: '12', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 20, title: '20. 计算2的幂', inputExample: '3', outputExample: '8', code: '', result: null, errMsg: null, statusMsg: '' }
+        { id: 20, title: '20. 计算2的幂, 输入一个数，表示幂。如输入3，则结果为2的3次方为8。', inputExample: '3', outputExample: '8', code: '', result: null, errMsg: null, statusMsg: '' }
         // Add more questions with descriptions, input examples, and output examples as needed
       ],
       lastDetails: {},
@@ -181,7 +182,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: index + 1, code: code }
+      const req = { id: this.questions[index].id, code: code }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {
@@ -201,36 +202,66 @@ export default {
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
         this.lastDetails = response.data.details
 
-        this.questions[0].code = this.lastDetails['6'].code
-        this.questions[0].statusMsg = this.lastDetails['6'].msg
-        this.questions[1].code = this.lastDetails['7'].code
-        this.questions[1].statusMsg = this.lastDetails['7'].msg
-        this.questions[2].code = this.lastDetails['8'].code
-        this.questions[2].statusMsg = this.lastDetails['8'].msg
-        this.questions[3].code = this.lastDetails['9'].code
-        this.questions[3].statusMsg = this.lastDetails['9'].msg
-        this.questions[4].code = this.lastDetails['10'].code
-        this.questions[4].statusMsg = this.lastDetails['10'].msg
-        this.questions[5].code = this.lastDetails['11'].code
-        this.questions[5].statusMsg = this.lastDetails['11'].msg
-        this.questions[6].code = this.lastDetails['12'].code
-        this.questions[6].statusMsg = this.lastDetails['12'].msg
-        this.questions[7].code = this.lastDetails['13'].code
-        this.questions[7].statusMsg = this.lastDetails['13'].msg
-        this.questions[8].code = this.lastDetails['14'].code
-        this.questions[8].statusMsg = this.lastDetails['14'].msg
-        this.questions[9].code = this.lastDetails['15'].code
-        this.questions[9].statusMsg = this.lastDetails['15'].msg
-        this.questions[10].code = this.lastDetails['16'].code
-        this.questions[10].statusMsg = this.lastDetails['16'].msg
-        this.questions[11].code = this.lastDetails['17'].code
-        this.questions[11].statusMsg = this.lastDetails['17'].msg
-        this.questions[12].code = this.lastDetails['18'].code
-        this.questions[12].statusMsg = this.lastDetails['18'].msg
-        this.questions[13].code = this.lastDetails['19'].code
-        this.questions[13].statusMsg = this.lastDetails['19'].msg
-        this.questions[14].code = this.lastDetails['20'].code
-        this.questions[14].statusMsg = this.lastDetails['20'].msg
+        if (this.lastDetails['6'] !== undefined) {
+          this.questions[0].code = this.lastDetails['6'].code
+          this.questions[0].statusMsg = this.lastDetails['6'].msg
+        }
+        if (this.lastDetails['7'] !== undefined) {
+          this.questions[1].code = this.lastDetails['7'].code
+          this.questions[1].statusMsg = this.lastDetails['7'].msg
+        }
+        if (this.lastDetails['8'] !== undefined) {
+          this.questions[2].code = this.lastDetails['8'].code
+          this.questions[2].statusMsg = this.lastDetails['8'].msg
+        }
+        if (this.lastDetails['9'] !== undefined) {
+          this.questions[3].code = this.lastDetails['9'].code
+          this.questions[3].statusMsg = this.lastDetails['9'].msg
+        }
+        if (this.lastDetails['10'] !== undefined) {
+          this.questions[4].code = this.lastDetails['10'].code
+          this.questions[4].statusMsg = this.lastDetails['10'].msg
+        }
+        if (this.lastDetails['11'] !== undefined) {
+          this.questions[5].code = this.lastDetails['11'].code
+          this.questions[5].statusMsg = this.lastDetails['11'].msg
+        }
+        if (this.lastDetails['12'] !== undefined) {
+          this.questions[6].code = this.lastDetails['12'].code
+          this.questions[6].statusMsg = this.lastDetails['12'].msg
+        }
+        if (this.lastDetails['13'] !== undefined) {
+          this.questions[7].code = this.lastDetails['13'].code
+          this.questions[7].statusMsg = this.lastDetails['13'].msg
+        }
+        if (this.lastDetails['14'] !== undefined) {
+          this.questions[8].code = this.lastDetails['14'].code
+          this.questions[8].statusMsg = this.lastDetails['14'].msg
+        }
+        if (this.lastDetails['15'] !== undefined) {
+          this.questions[9].code = this.lastDetails['15'].code
+          this.questions[9].statusMsg = this.lastDetails['15'].msg
+        }
+        if (this.lastDetails['16'] !== undefined) {
+          this.questions[10].code = this.lastDetails['16'].code
+          this.questions[10].statusMsg = this.lastDetails['16'].msg
+        }
+        if (this.lastDetails['17'] !== undefined) {
+          this.questions[11].code = this.lastDetails['17'].code
+          this.questions[11].statusMsg = this.lastDetails['17'].msg
+        }
+        if (this.lastDetails['18'] !== undefined) {
+          this.questions[12].code = this.lastDetails['18'].code
+          this.questions[12].statusMsg = this.lastDetails['18'].msg
+        }
+        if (this.lastDetails['19'] !== undefined) {
+          this.questions[13].code = this.lastDetails['19'].code
+          this.questions[13].statusMsg = this.lastDetails['19'].msg
+        }
+        if (this.lastDetails['20'] !== undefined) {
+          this.questions[14].code = this.lastDetails['20'].code
+          this.questions[14].statusMsg = this.lastDetails['20'].msg
+        }
       })
     }
   }
