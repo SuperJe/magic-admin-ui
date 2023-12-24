@@ -150,8 +150,9 @@ export default {
         { id: 63, title: '63. 插队问题', description: '给定一个数组长度为n, 将第n个人插入到第x个位置，输出插队后的数组。\n2<=n<=100, 1<=x<=n。\n第一行输入一个n, 第二行有n个数，表示数组的元素。第三行输入一个x。', inputExample: '7\n7 2 3 4 5 6 1\n3', outputExample: '7 2 1 3 4 5 6', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 64, title: '64. 身高统计：', description: 'N个人排成一排，找到一个人：在这个人前面的比他高的人数和这个人后面比他高的人数相等。\n输入格式:\n 第一行输入一个N。随后N行，表示从前到后每个人的身高。\n输出格式: \n输出一个数，是符合条件的那个人的身高。', inputExample: '5\n4\n1\n2\n1\n3', outputExample: '2', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 65, title: '65. 查找a行动。', description: '输入一个字符串, 找到a这个字符并输出他的下标。', inputExample: 'apple', outputExample: '0', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 66, title: '66. 类型转换1', description: '有两个变量a和b，在执行了如下代码后：\n\na = 32768\;\nb = a\;\nprintf("%d %d\\n", a, b)\;\n\n输出两个数：32768 -32768\n\n请问a和b分别是以下哪种类型？\nA. bool   B. char   C. short   D. int   E. float   F. double', inputExample: '(无)', outputExample: '输出你的选择，以空格隔开, 如： A B', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 67, title: '67. 类型转换2', description: '有两个变量a和b，在执行了如下代码后：\n\na = 1.000000001;\nb = a;\nprintf("%.9f %.9f\\n", a, b);\n\n输出两个数：1.000000001 1.000000000\n\n请问a和b分别是以下哪种类型？\nA. bool   B. char   C. short   D. int   E. float   F. double', inputExample: '(无)', outputExample: '输出你的选择，以空格隔开, 如： A B', code: '', result: null, errMsg: null, statusMsg: '' }
+        { id: 66, title: '66. 统计a行动', description: '输入一个字符串，统计a这个字符个数。', inputExample: 'lalala', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 67, title: '67. 首尾呼应', description: '输入2个字符串a和b，找到b在a中第一次出现和最后一次出现的下标。如果第一次和最后一次在同一个位置，输出YES和第一个下标。如果不是同一个位置，输出NO和两个下标, 均以空格分隔。', inputExample: 'abcdeab ab', outputExample: 'NO 0 5', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 68, title: '68. 输出最多的字符。', description: '输入一个字符串，仅包含a-z(小写)。统计出现最多的字符，输出该字符以及数量，空格分隔。', inputExample: 'abccdsfdccc', outputExample: 'c 5', code: '', result: null, errMsg: null, statusMsg: '' }
       ],
       lastDetails: {},
       isInputHighlighted: true,
@@ -209,6 +210,10 @@ export default {
         if (this.lastDetails['67'] !== undefined) {
           this.questions[4].code = this.lastDetails['67'].code
           this.questions[4].statusMsg = this.lastDetails['67'].msg
+        }
+        if (this.lastDetails['68'] !== undefined) {
+          this.questions[5].code = this.lastDetails['68'].code
+          this.questions[5].statusMsg = this.lastDetails['68'].msg
         }
       })
     }
