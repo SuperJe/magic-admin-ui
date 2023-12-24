@@ -35,16 +35,16 @@ export default {
           questions: ['👉 分支结构', '👉 选择结构']
         },
         {
-          title: '第4讲: 循环和数组',
-          questions: ['👉 switch语句', '👉 for循环', '👉 while循环', '👉 数组']
+          title: '第4讲: 循环',
+          questions: ['👉 switch语句', '👉 for循环', '👉 while循环']
         },
         {
           title: 'GESP一级集训',
           questions: ['👉 循环', '👉 结构']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第5讲: 数组和字符串',
+          questions: ['👉 数组', '👉 字符串']
         },
         {
           title: '待开放',
@@ -96,10 +96,13 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 3) {
+      if (index > 5) {
         return
       }
-      const idx = index + 1
+      if (index < 4) {
+        index = index + 1
+      }
+      const idx = index
       const paddedIndex = String(idx).padStart(2, '0') // Ensure index is 2 digits with leading zeros if needed
       this.$router.push({ path: `/practice/cpp_${paddedIndex}` })
     }
