@@ -152,7 +152,15 @@ export default {
         { id: 65, title: '65. 查找a行动。', description: '输入一个字符串, 找到a这个字符并输出他的下标。', inputExample: 'apple', outputExample: '0', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 66, title: '66. 统计a行动', description: '输入一个字符串，统计a这个字符个数。', inputExample: 'lalala', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 67, title: '67. 首尾呼应', description: '输入2个字符串a和b，找到b在a中第一次出现和最后一次出现的下标。如果第一次和最后一次在同一个位置，输出YES和第一个下标。如果不是同一个位置，输出NO和两个下标, 均以空格分隔。', inputExample: 'abcdeab ab', outputExample: 'NO 0 5', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 68, title: '68. 输出最多的字符。', description: '输入一个字符串，仅包含a-z(小写)。统计出现最多的字符，输出该字符以及数量，空格分隔。', inputExample: 'abccdsfdccc', outputExample: 'c 5', code: '', result: null, errMsg: null, statusMsg: '' }
+        { id: 68, title: '68. 输出最多的字符。', description: '输入一个字符串，仅包含a-z(小写)。统计出现最多的字符，输出该字符以及数量，空格分隔。', inputExample: 'abccdsfdccc', outputExample: 'c 5', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 69, title: '69. 学习对象。', description: 'n个学员站成一排,位置是1-n。第i个学员的编程能力是Hi。每个学员的学习对象都是编程能力比他高且最接近他的那个对象。输出每个位置的学习对象的位置，如有多个符合条件的学习对象，输出最靠前的那个。没有学习对象则输出0。\n第一行输入一个n。第2行有n个数，依次表示每个位置的编程能力。n<100。\n输出每个学习对象的位置，以空格分隔。', inputExample: '6\n3 2 6 1 1 2', outputExample: '3 1 0 2 2 1', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 70, title: '70. 3*3方阵的和。', description: '计算3*3方阵每一行数字的和以及每一列数字的和。输入一个3*3方阵，依次输出6个数字为从上到下每一行的和以及从左到右每一列的和，以空格分开。', inputExample: '1 2 3\n4 5 6\n7 8 9', outputExample: '6 15 24 12 15 18', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 71, title: '71. 二维数组最大值。', description: '求一个N*N二维数组中的最大值。\n第一行输入一个N。第二行到第N+1行，每行有N个数。N<100。\n输出最大值以及最大值的行列坐标，空格分隔。', inputExample: '3\n1 2 3\n4 5 6\n7 8 9', outputExample: '9 2 2', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 72, title: '72. 主对角线之和。', description: '计算一个N*N方阵的主对角线元素之和。主对角线是从左上角到右下角的对角线。\n第一行输入一个N。第二行到第N+1行，每行有N个数。N<100。\n输出主对角线所有元素的和。', inputExample: '3\n1 2 3\n4 5 6\n7 8 9', outputExample: '15', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 73, title: '73. 二维数组的查找', description: '在N*N方阵中查找指定数，输出这个数的行列下标，如有多个，每行输出一个行列下标。\n第一行输入一个N和指定数X。\n第二行到第N+1行，每行有N个数。N<100。 \n输出所有和X相等的数的行列坐标，每个行列坐标单独成行，行和列之间空格分开。', inputExample: '3 7\n1 2 3\n7 5 6\n7 8 9', outputExample: '1 0\n2 0', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 74, title: '74. 寻找重复元素。', description: '给定N个整数， 只有一个重复数字出现了2次。写代码找到这个数字。\n输入第一行输入包含一个数字N，表示数组长度。N<=10。\n输入第二行表示数组元素，以空格分割, 每个元素都小于等于100且非负数。\n输出重复的那个数字。', inputExample: '5\n1 2 3 4 4', outputExample: '4', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 75, title: '75. 两数之和。', description: '给定一个整数数组和目标值， 输出这个数组中的两个元素，这两个元素和等于目标值。\n输入第一行输入包含一个数字N和T，N表示数组长度, N<=10, T表示目标值。\n输入第二行表示数组元素，以空格分割, 每个元素都小于等于100且为非负数。\n输出加起来能等于目标值的任意2个数字，空格分割。\n', inputExample: '5 6\n1 2 3 4 4', outputExample: '2 4', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 76, title: '76. 两数之和II。', description: '给定一个整数数组和目标值，若数组中有两个元素和等于目标值，则输出他们的下标。若没有，则输出-1 -1\n输入第一行输入包含一个数字N和T，N表示数组长度, N<=10, T表示目标值。\n输入第二行表示数组元素，以空格分割, 每个元素都小于等于100且为非负数。\n输出加起来能等于目标值的任意2个数字行列下标，空格分割。\n', inputExample: '5 6\n1 2 3 4 4', outputExample: '1 3', code: '', result: null, errMsg: null, statusMsg: '' }
       ],
       lastDetails: {},
       isInputHighlighted: true,
@@ -214,6 +222,38 @@ export default {
         if (this.lastDetails['68'] !== undefined) {
           this.questions[5].code = this.lastDetails['68'].code
           this.questions[5].statusMsg = this.lastDetails['68'].msg
+        }
+        if (this.lastDetails['69'] !== undefined) {
+          this.questions[6].code = this.lastDetails['69'].code
+          this.questions[6].statusMsg = this.lastDetails['69'].msg
+        }
+        if (this.lastDetails['70'] !== undefined) {
+          this.questions[7].code = this.lastDetails['70'].code
+          this.questions[7].statusMsg = this.lastDetails['70'].msg
+        }
+        if (this.lastDetails['71'] !== undefined) {
+          this.questions[8].code = this.lastDetails['71'].code
+          this.questions[8].statusMsg = this.lastDetails['71'].msg
+        }
+        if (this.lastDetails['72'] !== undefined) {
+          this.questions[9].code = this.lastDetails['72'].code
+          this.questions[9].statusMsg = this.lastDetails['72'].msg
+        }
+        if (this.lastDetails['73'] !== undefined) {
+          this.questions[10].code = this.lastDetails['73'].code
+          this.questions[10].statusMsg = this.lastDetails['73'].msg
+        }
+        if (this.lastDetails['74'] !== undefined) {
+          this.questions[11].code = this.lastDetails['74'].code
+          this.questions[11].statusMsg = this.lastDetails['74'].msg
+        }
+        if (this.lastDetails['75'] !== undefined) {
+          this.questions[12].code = this.lastDetails['75'].code
+          this.questions[12].statusMsg = this.lastDetails['75'].msg
+        }
+        if (this.lastDetails['76'] !== undefined) {
+          this.questions[13].code = this.lastDetails['76'].code
+          this.questions[13].statusMsg = this.lastDetails['76'].msg
         }
       })
     }
