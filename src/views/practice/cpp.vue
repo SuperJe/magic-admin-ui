@@ -47,8 +47,8 @@ export default {
           questions: ['👉 一维数组', '👉 多维数组', '👉 嵌套循环', '👉 字符串']
         },
         {
-          title: '第6讲: 函数',
-          questions: ['👉 函数']
+          title: '第6讲: 循环控制综合习题',
+          questions: ['👉 循环', '👉 控制语句']
         },
         {
           title: '待开放',
@@ -96,7 +96,7 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 5) {
+      if (index > 6) {
         return
       }
       if (index < 4) {
