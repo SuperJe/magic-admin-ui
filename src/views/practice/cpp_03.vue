@@ -152,7 +152,7 @@ export default {
         { id: 22, title: '22.分离数位', description: '输入一个三位数，分离出它百位、十位和个位，依次输出，用空格隔开。', inputExample: '127', outputExample: '1 2 7', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 23, title: '23.判断是否偶数(不用做)', description: '读入一个整数a，如果a为偶数，在屏幕上输出yes。', inputExample: '8', outputExample: 'yes', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 24, title: '24.交换排序', description: '输入三个整数，按从大到小的顺序输出。', inputExample: '5 9 8', outputExample: '9 8 5', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 25, title: '25.判断奇偶数', description: '读入一个整数a，如果a为偶数，在屏幕上输出yes；如果a为奇数，在屏幕上输出no。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 25, title: '25.判断奇偶数', description: '读入一个整数a，如果a为偶数，在屏幕上输出yes；如果a为奇数，在屏幕上输出no。', inputExample: '8', outputExample: 'yes', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 26, title: '26.旅行费用', description: '鹭华公司"厦门一日游"的收费标准为：5人以内（含5人）按散客标准，每人300元；超过5人，按团体标准，每人280元。请根据输入的人数，输出其旅游费用。', inputExample: '9', outputExample: '2520', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 27, title: '27.飞机行李的收费', description: '乘坐飞机时，当乘客行李小于等于20公斤时，按每公斤1.68元收费，大于20公斤时，按每公斤1.98元收费，编程计算收费（保留2位小数）。', inputExample: '20', outputExample: '33.60', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 28, title: '28.最大的数', description: '输入三个数，输出其中最大的数。', inputExample: '1 2 3', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
