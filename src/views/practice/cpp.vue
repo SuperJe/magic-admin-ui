@@ -51,8 +51,8 @@ export default {
           questions: ['👉 循环', '👉 控制语句']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第7讲: 位运算基础',
+          questions: ['👉 位运算']
         },
         {
           title: '待开放',
@@ -96,7 +96,7 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 6) {
+      if (index > 7) {
         return
       }
       if (index < 4) {

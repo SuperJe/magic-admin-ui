@@ -114,6 +114,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/practice/cpp_07',
+    component: () => import('@/views/practice/cpp_07'),
+    hidden: true
+  },
+  {
     path: '/practice/gesp_01',
     component: () => import('@/views/practice/gesp_01'),
     hidden: true
