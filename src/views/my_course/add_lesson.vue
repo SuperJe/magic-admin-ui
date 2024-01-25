@@ -2,7 +2,16 @@
   <div>
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="学生名字" prop="name">
+        <el-select label="学生名字" v-model="form.name" multiple filterable remote
+        reserve-keyword placeholder="请输入学生姓名" :remote-method="remoteMethod"
+        :loading="loading">
+          <el-option v-for="item in options" :key="item.value" :label="item.label"
+          :value="item.value">
+          </el-option>
+        </el-select>
+        <!--
         <el-input v-model="form.name" />
+        -->
       </el-form-item>
       <el-form-item label="课堂记录" prop="record">
         <el-input type="textarea" autosize v-model="form.record" />
@@ -44,7 +53,12 @@ export default {
   data() {
     return {
       form: {
-        name: '',
+        name: 
+          options: [],
+          value: [],
+          list: [],
+          loading: false,
+          states: ["小明","小红"],
         record: '',
         date: '',
         knowledgeTags: '',
