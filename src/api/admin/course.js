@@ -24,3 +24,12 @@ export function signLesson(req) {
     data: req
   })
 }
+
+// 提交课程记录
+export function submitAddLesson(data) {
+  return request({
+    url: '/api/v1/courses/add_lesson',
+    method: 'post',
+    data
+  })
+}

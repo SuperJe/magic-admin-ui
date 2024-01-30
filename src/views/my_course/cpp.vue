@@ -64,7 +64,7 @@
                 </el-row>
                 <el-table
                   :data="learnd_records"
-                  style="width: 100%"
+                  style="width: 100%; white-space: pre-line;"
                   :default-sort="{prop: 'date', order: 'descending'}"
                 >
                   <el-table-column
@@ -86,8 +86,14 @@
                     </template>
                   </el-table-column>
                   <el-table-column label="授课教师" prop="teacher" width="250" />
-                  <el-table-column label="课堂记录" prop="remark" width="250" />
-                </el-table>
+                  <el-table-column
+                    label="课堂记录"
+                    width="250"
+                  >
+                    <template v-slot="scope">
+                      <div style="white-space: pre-wrap;">{{ scope.row.remark }}</div>
+                    </template>
+                  </el-table-column></el-table>
               </el-tab-pane>
             </el-tabs>
           </el-card>
@@ -201,6 +207,10 @@ export default {
       }
       .svg-icon{
         margin-right: 5px;
+      }
+
+      .el-table .cell {
+        white-space: pre-line;
       }
     </style>
 
