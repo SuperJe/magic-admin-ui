@@ -86,7 +86,8 @@
                     </template>
                   </el-table-column>
                   <el-table-column label="授课教师" prop="teacher" width="250" />
-                  <el-table-column label="课堂记录" prop="remark" style="white-space: pre-line; width: 250" />
+                  <!--el-table-column label="课堂记录" prop="remark" style="white-space: pre-line; width: 250" /-->
+                  <el-table-column label="课堂记录" prop="remark" />
                 </el-table>
               </el-tab-pane>
             </el-tabs>

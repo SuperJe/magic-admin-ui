@@ -1,20 +1,17 @@
 <template>
   <div>
+    <el-autocomplete
+      v-model="state"
+      :fetch-suggestions="querySearchAsync"
+      placeholder="请输入内容"
+      @select="handleSelect"
+    />
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="学生名字" prop="name">
-        <el-select label="学生名字" v-model="form.name" multiple filterable remote
-        reserve-keyword placeholder="请输入学生姓名" :remote-method="remoteMethod"
-        :loading="loading">
-          <el-option v-for="item in options" :key="item.value" :label="item.label"
-          :value="item.value">
-          </el-option>
-        </el-select>
-        <!--
         <el-input v-model="form.name" />
-        -->
       </el-form-item>
       <el-form-item label="课堂记录" prop="record">
-        <el-input type="textarea" autosize v-model="form.record" />
+        <el-input v-model="form.record" type="textarea" autosize />
       </el-form-item>
       <el-form-item label="上课日期" required>
         <el-col :span="11">
@@ -52,13 +49,11 @@ import { submitAddLesson } from '@/api/admin/course'
 export default {
   data() {
     return {
+      students: [],
+      state: '',
+      timeout: null,
       form: {
-        name: 
-          options: [],
-          value: [],
-          list: [],
-          loading: false,
-          states: ["小明","小红"],
+        name: '',
         record: '',
         date: '',
         knowledgeTags: '',
@@ -88,13 +83,18 @@ export default {
       }
     }
   },
+  mounted() {
+    this.students = this.loadAll()
+  },
   methods: {
     onSubmit() {
       console.log('submit')
       this.$refs.form.validate(valid => {
         if (valid) {
-          const req = { name: this.form.name, remark: this.form.record, created: this.form.date,
-            tags: this.form.knowledgeTags, teacher: this.form.teacher, course_type: Number(this.form.courseType) }
+          const req = {
+            name: this.form.name, remark: this.form.record, created: this.form.date,
+            tags: this.form.knowledgeTags, teacher: this.form.teacher, course_type: Number(this.form.courseType)
+          }
           submitAddLesson(JSON.stringify(req)).then(response => {
             console.log(response)
           })
@@ -103,6 +103,28 @@ export default {
           console.log('Validation failed')
         }
       })
+    },
+    loadAll() {
+      return [
+        { 'value': '小明' }
+      ]
+    },
+    querySearchAsync(queryString, cb) {
+      var students = this.students
+      var results = queryString ? students.filter(this.createStateFilter(queryString)) : students
+
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        cb(results)
+      }, 3000 * Math.random())
+    },
+    createStateFilter(queryString) {
+      return (state) => {
+        return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
+      }
+    },
+    handleSelect(item) {
+      console.log(item)
     }
   }
 }
