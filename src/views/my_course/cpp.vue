@@ -85,15 +85,16 @@
                       </el-popover>
                     </template>
                   </el-table-column>
-                  <el-table-column label="授课教师" prop="teacher" width="250" />
                   <el-table-column
                     label="课堂记录"
-                    width="250"
+                    width="500"
                   >
                     <template v-slot="scope">
                       <div style="white-space: pre-wrap;">{{ scope.row.remark }}</div>
                     </template>
-                  </el-table-column></el-table>
+                  </el-table-column>
+                  <el-table-column label="授课教师" prop="teacher" width="250" />
+                </el-table>
               </el-tab-pane>
             </el-tabs>
           </el-card>
