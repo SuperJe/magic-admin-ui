@@ -1,14 +1,13 @@
 <template>
   <div>
-    <el-autocomplete
-      v-model="state"
-      :fetch-suggestions="querySearchAsync"
-      placeholder="请输入内容"
-      @select="handleSelect"
-    />
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="学生名字" prop="name">
-        <el-input v-model="form.name" />
+        <el-autocomplete
+          v-model="form.name"
+          :fetch-suggestions="querySearchAsync"
+          placeholder="请输入内容"
+          @select="handleSelect"
+        />
       </el-form-item>
       <el-form-item label="课堂记录" prop="record">
         <el-input v-model="form.record" type="textarea" autosize />
@@ -37,7 +36,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
-        <el-button>重置</el-button>
+        <el-button @click="resetForm('form')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -49,11 +48,10 @@ import { submitAddLesson } from '@/api/admin/course'
 export default {
   data() {
     return {
-      students: [],
-      state: '',
-      timeout: null,
       form: {
+        students: [],
         name: '',
+        timeout: null,
         record: '',
         date: '',
         knowledgeTags: '',
@@ -62,8 +60,8 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '请输入学生名字', trigger: 'blur' },
-          { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+          { required: true, message: '请输入学生名字', trigger: 'change' },
+          { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'change' }
         ],
         record: [
           { required: true, message: '课堂记录不能为空', trigger: 'blur' }
@@ -98,11 +96,19 @@ export default {
           submitAddLesson(JSON.stringify(req)).then(response => {
             console.log(response)
           })
+          // if (response.code==200){
+          //   this.$alert('提交成功', '提交信息', {
+          //     confirmButtonText: '确定'
+          //   })
+          // }
           console.log('Form submitted:', this.form)
         } else {
           console.log('Validation failed')
         }
       })
+    },
+    resetForm() {
+      this.$refs.form.resetFields()
     },
     loadAll() {
       return [
@@ -119,8 +125,8 @@ export default {
       }, 3000 * Math.random())
     },
     createStateFilter(queryString) {
-      return (state) => {
-        return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
+      return (name) => {
+        return (name.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
       }
     },
     handleSelect(item) {
