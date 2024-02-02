@@ -44,6 +44,7 @@
 
 <script>
 import { submitAddLesson } from '@/api/admin/course'
+import { listUser } from '@/api/admin/sys-user'
 
 export default {
   data() {
@@ -78,7 +79,16 @@ export default {
         courseType: [
           { required: true, message: '请选择课程类型', trigger: 'change' }
         ]
-      }
+      },
+      queryParams: {
+        pageIndex: 1,
+        pageSize: 10,
+        username: undefined,
+        phone: undefined,
+        status: undefined,
+        deptId: undefined
+      },
+      users: []
     }
   },
   mounted() {
@@ -95,12 +105,13 @@ export default {
           }
           submitAddLesson(JSON.stringify(req)).then(response => {
             console.log(response)
+            if (response.code === 200 && response.data.code === 0) {
+              this.$alert('提交成功', '提交信息', {
+                confirmButtonText: '确定'
+              })
+            }
           })
-          // if (response.code==200){
-          //   this.$alert('提交成功', '提交信息', {
-          //     confirmButtonText: '确定'
-          //   })
-          // }
+
           console.log('Form submitted:', this.form)
         } else {
           console.log('Validation failed')
@@ -111,9 +122,16 @@ export default {
       this.$refs.form.resetFields()
     },
     loadAll() {
-      return [
-        { 'value': '小明' }
-      ]
+      listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
+        this.total = response.data.count
+        for (let i = 0; i < this.total; i++) {
+          this.users.push(response.data.list[i].username)
+        }
+        return this.users
+      }
+      )
+
+      console.log(this.users)
     },
     querySearchAsync(queryString, cb) {
       var students = this.students
