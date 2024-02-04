@@ -125,13 +125,12 @@ export default {
       listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
         this.total = response.data.count
         for (let i = 0; i < this.total; i++) {
-          this.users.push(response.data.list[i].username)
+          this.users[i] = { 'value': response.data.list[i].username }
+          // this.users.push(response.data.list[i].username)
         }
-        return this.users
-      }
-      )
-
+      })
       console.log(this.users)
+      return this.users
     },
     querySearchAsync(queryString, cb) {
       var students = this.students

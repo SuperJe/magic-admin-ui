@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     loadAll() {
+      console.log({ 'value': '小明' })
       return [
         { 'value': '小明' }
       ]
