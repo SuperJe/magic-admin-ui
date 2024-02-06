@@ -8,27 +8,27 @@
     />
     <el-button type="primary" @click="handleQuery">搜索</el-button>
     <el-table
-      :data="tableData"
+      :data="learned_records"
       style="width: 100%"
     >
       <el-table-column
-        prop="date"
         label="上课日期"
-        width="180"
+        width="250"
+        prop="date"
       />
       <el-table-column
-        prop="knowledgeTags"
         label="知识标签"
-        width="360"
+        width="250"
+        prop="tags"
       />
       <el-table-column
-        prop="teacher"
         label="授课教师"
         width="180"
+        prop="teacher"
       />
       <el-table-column
-        prop="remark"
         label="课堂记录"
+        prop="remark"
       />
     </el-table>
   </div>
@@ -36,19 +36,15 @@
 
 <script>
 import { listUser } from '@/api/admin/sys-user'
+import { getLearned } from '@/api/admin/course'
 
 export default {
   data() {
     return {
+      learned_records: [],
       students: [],
       name: '',
       timeout: null,
-      tableData: [{
-        date: '2022-02-22',
-        knowledgeTags: 'cpp',
-        teacher: '颜老师',
-        remark: 'abc'
-      }],
       queryParams: {
         pageIndex: 1,
         pageSize: 10
@@ -65,15 +61,20 @@ export default {
         this.total = response.data.count
         for (let i = 0; i < this.total; i++) {
           this.users[i] = { 'value': response.data.list[i].username }
-          // this.users.push(response.data.list[i].username)
         }
       })
       console.log(this.users)
       return this.users
     },
+    getLearnedRecords() {
+
+    },
     handleQuery() {
-      this.queryParams.page = 1
-      this.getList()
+      getLearned(2, this.name).then(response => {
+        this.learned_records = response.data.records
+      })
+      // this.queryParams.page = 1
+      // this.getList()
     },
     querySearchAsync(queryString, cb) {
       var students = this.students

@@ -9,9 +9,9 @@ export function getCourseDetail(course) {
 }
 
 // 查询上课记录
-export function getLearned(course) {
+export function getLearned(course, uid) {
   return request({
-    url: '/api/v1/courses/learned?course_type=' + course,
+    url: '/api/v1/courses/learned?course_type=' + course + '&user_id=' + uid,
     method: 'get'
   })
 }
