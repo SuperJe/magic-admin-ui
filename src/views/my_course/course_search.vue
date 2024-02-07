@@ -72,6 +72,7 @@ export default {
     handleQuery() {
       getLearned(2, this.name).then(response => {
         this.learned_records = response.data.records
+        console.log(response.data.records)
       })
       // this.queryParams.page = 1
       // this.getList()
