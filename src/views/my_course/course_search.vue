@@ -70,7 +70,7 @@ export default {
 
     },
     handleQuery() {
-      getLearned(2, this.name).then(response => {
+      getLearned(0, this.name).then(response => {
         this.learned_records = response.data.records
         console.log(response.data.records)
       })
