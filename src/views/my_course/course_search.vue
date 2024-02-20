@@ -30,7 +30,71 @@
         label="课堂记录"
         prop="remark"
       />
+      <el-table-column
+        label="操作"
+        width="160"
+        fix="right"
+        class-name="small-padding fixed-width"
+      >
+        <template slot-scope="scope">
+          <el-button
+            v-permisaction="['admin:sysUser:edit']"
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+          >修改</el-button>
+        </template>
+      </el-table-column>
     </el-table>
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="queryParams.pageIndex"
+      :limit.sync="queryParams.pageSize"
+      @pagination="getList"
+    />
+    <el-dialog :title="title" :visible.sync="open" width="600px" :close-on-click-modal="false">
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="学生名字" prop="name">
+          <el-autocomplete
+            v-model="form.name"
+            :fetch-suggestions="querySearchAsync"
+            placeholder="请输入内容"
+            @select="handleSelect"
+          />
+        </el-form-item>
+        <el-form-item label="课堂记录" prop="record">
+          <el-input v-model="form.record" type="textarea" autosize />
+        </el-form-item>
+        <el-form-item label="上课日期" required>
+          <el-col :span="11">
+            <el-form-item prop="date">
+              <el-date-picker v-model="form.date" type="datetime" placeholder="选择日期" style="width: 100%;" />
+            </el-form-item>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="知识标签" prop="knowledgeTags">
+          <el-input v-model="form.knowledgeTags" />
+        </el-form-item>
+        <el-form-item label="授课老师" prop="teacher">
+          <el-select v-model="form.teacher" placeholder="请选择授课老师">
+            <el-option label="颜老师" value="颜老师" />
+            <el-option label="岳老师" value="岳老师" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="课程类型" prop="courseType">
+          <el-select v-model="form.courseType" placeholder="请选择课程类型">
+            <el-option label="Python" value="1" />
+            <el-option label="CPP" value="2" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -49,11 +113,34 @@ export default {
         pageIndex: 1,
         pageSize: 10
       },
-      users: []
+      users: [],
+      form: {},
+      rules: {
+        name: [
+          { required: true, message: '请输入学生名字', trigger: 'change' },
+          { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'change' }
+        ],
+        record: [
+          { required: true, message: '课堂记录不能为空', trigger: 'blur' }
+        ],
+        date: [
+          { required: true, message: '请选择日期', trigger: 'change' }
+        ],
+        knowledgeTags: [
+          { required: true, message: '请输入知识标签', trigger: 'blur' }
+        ],
+        teacher: [
+          { required: true, message: '请选择授课老师', trigger: 'change' }
+        ],
+        courseType: [
+          { required: true, message: '请选择课程类型', trigger: 'change' }
+        ]
+      }
     }
   },
   mounted() {
     this.students = this.loadAll()
+    this.getList()
   },
   methods: {
     loadAll() {
@@ -66,16 +153,22 @@ export default {
       console.log(this.users)
       return this.users
     },
-    getLearnedRecords() {
-
+    getList() {
+      this.loading = true
+      listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
+        this.userList = response.data.list
+        this.total = response.data.count
+        this.loading = false
+      }
+      )
     },
     handleQuery() {
       getLearned(0, this.name).then(response => {
         this.learned_records = response.data.records
         console.log(response.data.records)
       })
-      // this.queryParams.page = 1
-      // this.getList()
+      this.queryParams.page = 1
+      this.getList()
     },
     querySearchAsync(queryString, cb) {
       var students = this.students
@@ -94,6 +187,14 @@ export default {
     handleSelect(item) {
       console.log(item)
     }
+    // handleUpdate(row) {
+    //   const userId = row.userId || this.ids
+    //   getUser(userId).then(response => {
+    //     this.form = response.data
+    //     this.open = true
+    //     this.title = '修改用户'
+    //   })
+    // },
   }
 }
 </script>
