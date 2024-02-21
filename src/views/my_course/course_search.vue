@@ -36,15 +36,13 @@
         fix="right"
         class-name="small-padding fixed-width"
       >
-        <template slot-scope="scope">
-          <el-button
-            v-permisaction="['admin:sysUser:edit']"
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-          >修改</el-button>
-        </template>
+        <el-button
+          v-permisaction="['admin:sysUser:edit']"
+          size="mini"
+          type="text"
+          icon="el-icon-edit"
+          @click="open = true"
+        >修改</el-button>
       </el-table-column>
     </el-table>
     <pagination
@@ -91,15 +89,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="open = false">确 定</el-button>
+        <el-button @click="open = false">取 消</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { listUser } from '@/api/admin/sys-user'
+import { listUser, getUser } from '@/api/admin/sys-user'
 import { getLearned } from '@/api/admin/course'
 
 export default {
@@ -109,6 +107,7 @@ export default {
       students: [],
       name: '',
       timeout: null,
+      open: false,
       queryParams: {
         pageIndex: 1,
         pageSize: 10
@@ -186,15 +185,15 @@ export default {
     },
     handleSelect(item) {
       console.log(item)
+    },
+    handleUpdate(row) {
+      const userId = row.userId || this.ids
+      getUser(userId).then(response => {
+        this.form = response.data
+        this.open = true
+        this.title = '修改用户'
+      })
     }
-    // handleUpdate(row) {
-    //   const userId = row.userId || this.ids
-    //   getUser(userId).then(response => {
-    //     this.form = response.data
-    //     this.open = true
-    //     this.title = '修改用户'
-    //   })
-    // },
   }
 }
 </script>
