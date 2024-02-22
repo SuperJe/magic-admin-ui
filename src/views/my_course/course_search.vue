@@ -31,18 +31,24 @@
         prop="remark"
       />
       <el-table-column
+        label="课程类型"
+        prop="course_type"
+      />
+      <el-table-column
         label="操作"
         width="160"
         fix="right"
         class-name="small-padding fixed-width"
       >
-        <el-button
-          v-permisaction="['admin:sysUser:edit']"
-          size="mini"
-          type="text"
-          icon="el-icon-edit"
-          @click="open = true"
-        >修改</el-button>
+        <template slot-scope="scope">
+          <el-button
+            v-permisaction="['admin:sysUser:edit']"
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+          >修改</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <pagination
@@ -97,7 +103,7 @@
 </template>
 
 <script>
-import { listUser, getUser } from '@/api/admin/sys-user'
+import { listUser } from '@/api/admin/sys-user'
 import { getLearned } from '@/api/admin/course'
 
 export default {
@@ -164,7 +170,7 @@ export default {
     handleQuery() {
       getLearned(0, this.name).then(response => {
         this.learned_records = response.data.records
-        console.log(response.data.records)
+        console.log(this.learned_records)
       })
       this.queryParams.page = 1
       this.getList()
@@ -187,12 +193,12 @@ export default {
       console.log(item)
     },
     handleUpdate(row) {
-      const userId = row.userId || this.ids
-      getUser(userId).then(response => {
-        this.form = response.data
-        this.open = true
-        this.title = '修改用户'
-      })
+      console.log('row: ', row)
+      this.form = row
+      this.form.knowledgeTags = row.tags
+      this.form.record = row.remark
+      this.form.courseType = row.course_type
+      this.open = true
     }
   }
 }
