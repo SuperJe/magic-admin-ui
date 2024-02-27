@@ -33,3 +33,11 @@ export function submitAddLesson(data) {
     data
   })
 }
+
+export function updateCourse(data) {
+  return request({
+    url: '/api/v1/courses/course_search',
+    method: 'post',
+    data
+  })
+}
