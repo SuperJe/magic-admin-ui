@@ -63,8 +63,8 @@ export default {
           questions: ['👉 循环', '👉 一维数组']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第10讲: GESP三级以下综合练习',
+          questions: ['综合习题']
         },
         {
           title: '待开放',
@@ -96,7 +96,7 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 9) {
+      if (index > 10) {
         return
       }
       if (index < 4) {
