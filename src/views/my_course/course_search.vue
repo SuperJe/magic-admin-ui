@@ -9,7 +9,7 @@
     <el-button type="primary" @click="handleQuery">搜索</el-button>
     <el-table
       :data="learned_records"
-      style="width: 100%"
+      style="white-space: pre-wrap; width: 100%"
     >
       <el-table-column
         label="上课日期"
@@ -28,6 +28,7 @@
       />
       <el-table-column
         label="课堂记录"
+        style="white-space: pre-wrap;"
         prop="remark"
       />
       <el-table-column
@@ -48,6 +49,13 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
           >修改</el-button>
+          <el-button
+            v-permisaction="['admin:sysUser:remove']"
+            type="danger"
+            icon="el-icon-delete"
+            size="mini"
+            @click="handleDelete(scope.row)"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -96,7 +104,7 @@
 
 <script>
 import { listUser } from '@/api/admin/sys-user'
-import { getLearned, updateCourse } from '@/api/admin/course'
+import { getLearned, updateCourse, deleteCourse } from '@/api/admin/course'
 
 export default {
   data() {
@@ -197,6 +205,42 @@ export default {
       this.form.courseType = row.course_type
       this.open = true
     },
+    handleDelete(row) {
+      const req = {
+        id: row.id, user_id: row.user_id
+      }
+      this.$confirm('是否确认删除此条记录?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteCourse(JSON.stringify(req)).then(response => {
+          console.log('deleteResponse: ', response)
+          if (response.code === 200 && response.data.code === 0) {
+            this.$message({
+              type: 'success',
+              message: '删除成功'
+            })
+          } else {
+            this.msgError(response.msg)
+          }
+        })
+      })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+      // deleteCourse(JSON.stringify(req)).then(response => {
+      //   console.log('deleteResponse: ', response)
+      //   if (response.code === 200 && response.data.code === 0) {
+      //     this.$alert('删除成功', '删除课程记录', {
+      //       confirmButtonText: '确定'
+      //     })
+      //   }
+      // })
+    },
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -205,7 +249,7 @@ export default {
             tags: this.form.knowledgeTags, teacher: this.form.teacher, course_type: Number(this.form.courseType)
           }
           updateCourse(JSON.stringify(req)).then(response => {
-            console.log(response)
+            console.log('updateResponse: ', response)
             if (response.code === 200 && response.data.code === 0) {
               this.$alert('提交成功', '提交信息', {
                 confirmButtonText: '确定'

@@ -41,3 +41,11 @@ export function updateCourse(data) {
     data
   })
 }
+
+export function deleteCourse(data) {
+  return request({
+    url: '/api/v1/courses/delete_course',
+    method: 'post',
+    data
+  })
+}

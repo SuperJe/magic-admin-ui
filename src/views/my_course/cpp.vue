@@ -146,7 +146,7 @@ export default {
       })
     },
     getLearnedRecords() {
-      getLearned(2).then(response => {
+      getLearned(2, '').then(response => {
         this.learnd_records = response.data.records
         this.completed_lesson_hours = this.learnd_records.length
         this.progressWidth = ((this.completed_lesson_hours / response.data.total_lesson_hours) * 100).toFixed(2)
