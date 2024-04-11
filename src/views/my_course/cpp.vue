@@ -64,7 +64,7 @@
                 </el-row>
                 <el-table
                   :data="learnd_records"
-                  style="width: 100%; white-space: pre-line;"
+                  style="width: 100%"
                   :default-sort="{prop: 'date', order: 'descending'}"
                 >
                   <el-table-column
@@ -85,15 +85,9 @@
                       </el-popover>
                     </template>
                   </el-table-column>
-                  <el-table-column
-                    label="课堂记录"
-                    width="500"
-                  >
-                    <template v-slot="scope">
-                      <div style="white-space: pre-wrap;">{{ scope.row.remark }}</div>
-                    </template>
-                  </el-table-column>
                   <el-table-column label="授课教师" prop="teacher" width="250" />
+                  <!--el-table-column label="课堂记录" prop="remark" style="white-space: pre-line; width: 250" /-->
+                  <el-table-column label="课堂记录" prop="remark" />
                 </el-table>
               </el-tab-pane>
             </el-tabs>
@@ -152,7 +146,7 @@ export default {
       })
     },
     getLearnedRecords() {
-      getLearned(2).then(response => {
+      getLearned(2, '').then(response => {
         this.learnd_records = response.data.records
         this.completed_lesson_hours = this.learnd_records.length
         this.progressWidth = ((this.completed_lesson_hours / response.data.total_lesson_hours) * 100).toFixed(2)
@@ -208,10 +202,6 @@ export default {
       }
       .svg-icon{
         margin-right: 5px;
-      }
-
-      .el-table .cell {
-        white-space: pre-line;
       }
     </style>
 

@@ -9,9 +9,9 @@ export function getCourseDetail(course) {
 }
 
 // 查询上课记录
-export function getLearned(course) {
+export function getLearned(course, username) {
   return request({
-    url: '/api/v1/courses/learned?course_type=' + course,
+    url: '/api/v1/courses/learned?course_type=' + course + '&user_name=' + username,
     method: 'get'
   })
 }
@@ -29,6 +29,22 @@ export function signLesson(req) {
 export function submitAddLesson(data) {
   return request({
     url: '/api/v1/courses/add_lesson',
+    method: 'post',
+    data
+  })
+}
+
+export function updateCourse(data) {
+  return request({
+    url: '/api/v1/courses/course_search',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteCourse(data) {
+  return request({
+    url: '/api/v1/courses/delete_course',
     method: 'post',
     data
   })
