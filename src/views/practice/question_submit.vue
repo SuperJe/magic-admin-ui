@@ -29,6 +29,13 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="10">
+          <el-form-item label="得分">
+            <el-input v-model="form.score" type="textarea" autosize />
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
         <el-button>取消</el-button>
@@ -47,7 +54,8 @@ export default {
         title: '',
         options: '',
         correctOption: '',
-        tag: ''
+        tag: '',
+        score: ''
       },
       rules: {
         title: [
@@ -58,6 +66,9 @@ export default {
         ],
         correctOption: [
           { required: true, message: '请输入正确选项', trigger: 'blur' }
+        ],
+        score: [
+          { required: true, message: '请输入题目得分', trigger: 'blur' }
         ]
       }
     }
@@ -68,7 +79,8 @@ export default {
         if (valid) {
           const req = {
             title: this.form.title, options: this.form.options,
-            correct_option: this.form.correctOption, tag: this.form.tag
+            correct_option: Number(this.form.correctOption), tag: this.form.tag,
+            score: Number(this.form.score)
           }
           questionSubmit(JSON.stringify(req)).then(response => {
             console.log('rsp:\n\n', response)
