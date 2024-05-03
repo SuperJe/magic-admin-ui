@@ -44,31 +44,31 @@ export default {
         },
         {
           title: '第5讲: 数组和字符串',
-          questions: ['👉 数组', '👉 字符串']
+          questions: ['👉 一维数组', '👉 多维数组', '👉 嵌套循环', '👉 字符串']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第6讲: 循环控制综合习题(一)',
+          questions: ['👉 循环', '👉 控制语句']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第7讲: 位运算基础',
+          questions: ['👉 位运算']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第8讲: 循环控制综合习题(二)',
+          questions: ['👉 循环', '👉 控制语句']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第9讲: 一维数组综合习题',
+          questions: ['👉 循环', '👉 一维数组']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第10讲: GESP三级以下综合练习',
+          questions: ['👉 综合习题']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第11讲',
+          questions: ['👉 结构体', '👉 指针']
         },
         {
           title: '待开放',
@@ -96,7 +96,7 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 5) {
+      if (index > 11) {
         return
       }
       if (index < 4) {
@@ -104,6 +104,7 @@ export default {
       }
       const idx = index
       const paddedIndex = String(idx).padStart(2, '0') // Ensure index is 2 digits with leading zeros if needed
+      console.log('pad:', paddedIndex)
       this.$router.push({ path: `/practice/cpp_${paddedIndex}` })
     }
   }
