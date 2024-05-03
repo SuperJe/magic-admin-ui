@@ -24,9 +24,8 @@
       </el-form-item>
       <el-form-item label="授课老师" prop="teacher">
         <el-select v-model="form.teacher" placeholder="请选择授课老师">
-          <el-option label="岳老师" value="岳老师" />
           <el-option label="颜老师" value="颜老师" />
-          <el-option label="郭老师" value="郭老师" />
+          <el-option label="岳老师" value="岳老师" />
         </el-select>
       </el-form-item>
       <el-form-item label="课程类型" prop="courseType">
@@ -57,7 +56,7 @@ export default {
         record: '',
         date: '',
         knowledgeTags: '',
-        teacher: '岳老师',
+        teacher: '颜老师',
         courseType: '2'
       },
       rules: {
@@ -127,8 +126,10 @@ export default {
         this.total = response.data.count
         for (let i = 0; i < this.total; i++) {
           this.users[i] = { 'value': response.data.list[i].username }
+          // this.users.push(response.data.list[i].username)
         }
       })
+      console.log(this.users)
       return this.users
     },
     querySearchAsync(queryString, cb) {
