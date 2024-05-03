@@ -3,7 +3,12 @@
     <div class="paper">
       <div v-if="isLoading">加载中...</div>
       <div v-else><!--渲染questions--></div>
-      <h1>获取题目测试</h1>
+
+      <el-col :span="4">
+        <el-input v-model="tid" placeholder="请输入试卷ID" />
+        <el-button type="primary" @click="onClick">获取试卷</el-button>
+      </el-col>
+      <h1>{{ title }}</h1>
       <div v-if="questions && questions.length > 0" class="section">
         <div class="section-title">一、选择题</div>
         <div v-for="(question,index) in questions" :key="index">
@@ -25,7 +30,6 @@
           </div>
         </div>
       </div>
-
       <button class="submit-button" @click="submitPaper">提交试卷</button>
       <div v-if="showScore" class="total-score">
         <p>得分: {{ totalScore }} </p>
@@ -35,14 +39,17 @@
 </template>
 
 <script>
-import { getQuestions } from '@/api/admin/practice'
+import { getQuestions, getTest } from '@/api/admin/practice'
 export default {
   data() {
     return {
       selectedAnswers: [],
       showScore: false,
       isLoading: true,
-      questions: []
+      questions: [],
+      tid: '',
+      title: '',
+      pids: []
     }
   },
   computed: {
@@ -63,7 +70,6 @@ export default {
     }
   },
   created() {
-    this.showQuestions()
     // 从本地存储中加载选项
     this.loadSelectedAnswersFromLocalStorage()
     // 监听 beforeunload 事件，在页面即将刷新或关闭时保存选项
@@ -77,14 +83,38 @@ export default {
     this.saveSelectedAnswersToLocalStorage()
   },
   methods: {
+    onClick() {
+      this.pids = []
+      getTest(this.tid).then(response => {
+        this.title = response.data.title
+        var num = ''
+        for (let i = 0; i < response.data.pids.length; i++) {
+          if (response.data.pids[i] === ',') {
+            this.pids.push(Number(num))
+            num = ''
+          } else {
+            num = num + response.data.pids[i]
+          }
+        }
+        this.pids.push(Number(num))
+        this.showQuestions()
+        console.log('pids: ', this.pids)
+      })
+    },
     showQuestions() {
-      this.isloading = true
-      const ids = [1, 9, 10, 11]
+      this.isLoading = true
+      const ids = [9, 10, 11, 12]
       const len = ids.length
-      getQuestions(JSON.stringify(ids)).then(response => {
-        for (let i = 0; i < len; i++) {
+      console.log('ids: ', ids)
+      console.log('len: ', len)
+      const ids2 = this.pids
+      const len2 = ids2.length
+      console.log('ids2: ', ids2)
+      console.log('len2: ', len2)
+      getQuestions(JSON.stringify(ids2)).then(response => {
+        for (let i = 0; i < len2; i++) {
           // this.questions[i].index = i
-          this.questions[i] = response.data.questions[ids[i]]
+          this.questions[i] = response.data.questions[ids2[i]]
           this.questions[i].option = this.questions[i].option.split(',')
         }
         console.log('questions:  ', this.questions)
