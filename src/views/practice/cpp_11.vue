@@ -147,12 +147,13 @@ export default {
   data() {
     return {
       questions: [
-        { id: 115, title: '115. 数位分离', description: '输入一个三位数，输出这个三位数，中间以空格分开。如输入123，输出1 2 3', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 116, title: '116. 回文数', description: '输入一个数字，判断是否是回文数字。回文数字正着、反着都是一样的，如121，232等. 是则输出Y，否则输出N', inputExample: '121', outputExample: 'Y', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 117, title: '117. 斐波那契数列', description: '斐波那契数列是指这样的数列：数列的第一个和第二个数都为1，接下来每个数都等于前面2个数之和。给出一个正整数 a，要求斐波那契数列中第a个数是多少。', inputExample: '19', outputExample: '4181', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 118, title: '118. 余数相同问题', description: '已知三个正整数 a，b，c。现有一个大于 1 的整数 x，将其作为除数分别除 a，b，c，得到的余数相同。请问满足上述条件的 x 的最小值是多少？数据保证 x 有解。 \n输入一行三个数a,b,c, 输出x的值。', inputExample: '300 262 205', outputExample: '19', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 119, title: '119. 数字字符个数', description: '输入一行字符，统计出其中数字字符的个数。', inputExample: 'Today is 2021-03-27', outputExample: '8', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 120, title: '120. 矩阵加法', description: '输入两个 n 行 m 列的矩阵 A 和 B，输出它们的和 A+B，矩阵加法的规则是两个矩阵中对应位置的值进行加和，具体参照样例。\n第一行包含两个整数 n 和 m，表示矩阵的行数和列数 (1≤n≤100，1≤m≤100)。\n接下来n行，每行m个整数，表示矩阵 A 的元素。\n接下来 n 行，每行 m 个整数，表示矩阵 B 的元素。\n相邻两个整数之间用单个空格隔开，每个元素均在 1∼10001∼1000 之间。', inputExample: '3 3\n1 2 3\n1 2 3\n1 2 3\n1 2 3\n4 5 6\n7 8 9\n', outputExample: '2 4 6\n5 7 9\n8 10 12\n', code: '', result: null, errMsg: null, statusMsg: '' }
+        { id: 121, title: '121. 结构体输入输出', description: '定义一个结构体Person, 在Person中包含一个字符串变量name和整型变量age。在main函数中定义一个person结构体变量并将输入的数据赋值给它的name和age。再将它们反过来次序输出。', inputExample: '晟怀 11', outputExample: '11 晟怀', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 122, title: '122. 增加函数', description: '为Person结构体添加一个成员函数greet(string str)，调用该函数，该函数内部反向打印出str。\n输入仅有一个字符串str', inputExample: 'abcd', outputExample: 'dcba', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 123, title: '123. 定义结构体数组', description: '创建一个Person数组，并初始化3个Person对象，然后打印每个人的年龄和姓名。\n输入有三行，每行都是先年龄再姓名，中间空格分割\n每行先输出姓名，再空格，再年龄', inputExample: '11 晟怀\n11 诗淇\n 9 以肆', outputExample: '晟怀 11\n诗淇 11\n以肆 9', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 124, title: '124. 结构体与指针', description: '创建一个person对象，再创建一个指针指向它。使用这个指针打印出姓名和年龄，空格分割。\n输入仅一行: 姓名和年龄，空格分割。\n输出也仅一行: 年龄和姓名，空格分割。', inputExample: '11 晟怀', outputExample: '晟怀 11', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 125, title: '125. 平均年龄', description: '有n个person，输入这n个person的年龄，求出他们的平均年龄，结果保留一位小数。\n第一行输入一个n, 接下来n行每行一个数字，表示年龄。\n输出这n个person的平均数。', inputExample: '2\n10\n10', outputExample: '10.0', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 126, title: '126. 最大最小年龄的名字', description: '有n个person，输入这n个person的年龄和姓名, 输出年龄最大的名字和年龄最小的名字。\n第一行输入一个n, 接下来n行每行输入姓名和年龄，空格分割。\n依次输出最大和最小年龄对应的名字，空格分割。\n', inputExample: '3\n11 晟怀\n10 以肆\n9 诗淇', outputExample: '晟怀 诗淇', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' },
+        { id: 127, title: '127. 大于某个年龄的全部person信息', description: '有n个person，输入这n个person的年龄和姓名, 输出年龄大于m的名字和年龄。\n第一行输入一个n和m，空格分割。 接下来n行每行输入姓名和年龄，空格分割。\n依次输出年龄大于m的person的年龄和名字，空格分割，每个person信息单独成行。\n', inputExample: '3 9\n11 晟怀\n10 以肆\n9 诗淇', outputExample: '11 晟怀\n10 以肆', code: '/*\nstruct Person {\n};\n*/', result: null, errMsg: null, statusMsg: '' }
       ],
       lastDetails: {},
       isInputHighlighted: true,
@@ -191,8 +192,8 @@ export default {
       }
       getLastPracticeCode(JSON.stringify(ids)).then(response => {
         this.lastDetails = response.data.details
-        for (let i = 115; i <= 120; i++) {
-          const questionIndex = i - 115
+        for (let i = 121; i <= 127; i++) {
+          const questionIndex = i - 121
           const question = this.questions[questionIndex]
 
           if (this.lastDetails[i.toString()] !== undefined) {
