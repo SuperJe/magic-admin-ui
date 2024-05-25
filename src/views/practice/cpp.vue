@@ -63,12 +63,12 @@ export default {
           questions: ['问题4', '问题5']
         },
         {
-          title: '待开放',
-          questions: ['问题1', '问题2', '问题3', '问题4', '问题5']
+          title: '第10讲: GESP三级以下综合练习',
+          questions: ['👉 综合习题']
         },
         {
-          title: '待开放',
-          questions: ['问题4', '问题5']
+          title: '第11讲: 结构体基础',
+          questions: ['👉 结构体', '👉 指针']
         },
         {
           title: '待开放',
@@ -96,7 +96,7 @@ export default {
         this.$router.push({ path: `/practice/gesp_01` })
         return
       }
-      if (index > 5) {
+      if (index > 11) {
         return
       }
       if (index < 4) {
@@ -104,6 +104,7 @@ export default {
       }
       const idx = index
       const paddedIndex = String(idx).padStart(2, '0') // Ensure index is 2 digits with leading zeros if needed
+      console.log('pad:', paddedIndex)
       this.$router.push({ path: `/practice/cpp_${paddedIndex}` })
     }
   }

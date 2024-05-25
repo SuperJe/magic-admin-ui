@@ -27,11 +27,11 @@
         </div>
       </div>
 
-      <!-- 阅读程序题部分 -->
+      <!-- 判断题部分 -->
       <div class="section">
-        <div class="section-title">二、阅读程序</div>
+        <div class="section-title">二、判断题</div>
         <div v-for="(question, index) in programmingQuestionsArray" :key="index">
-          <div class="section-title">阅读以下程序代码：</div>
+          <div class="section-title">判断下列题目的对错：</div>
           <pre><code class="language-cpp">{{ addLineNumbers(question.program) }}</code></pre>
           <div v-for="(subQuestion, subIndex) in question.questions" :key="subIndex">
             <div class="section-title">{{ subQuestion.index }}. {{ subQuestion.question }}</div>
