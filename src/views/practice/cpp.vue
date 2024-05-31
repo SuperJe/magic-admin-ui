@@ -23,7 +23,7 @@ export default {
       cards: [
         // your card data here
         {
-          title: '第1讲: 初识C++',
+          title: '第1讲: 初识编程',
           questions: ['👉 变量定义', '👉 赋值', '👉 数据类型']
         },
         {
