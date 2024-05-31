@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,11 +36,50 @@
 </template>
 
               <style scoped>
+              .container {
+                position: relative;
+                padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+              }
+
+              .language-selector {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                background-color: #ffffff;
+                padding: 10px;
+                border: 2px solid #4caf50;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000; /* Ensures it stays on top */
+              }
+
+              .language-selector label {
+                font-weight: bold;
+                color: #4caf50; /* Match border color */
+                margin-right: 10px;
+              }
+
+              .language-selector select {
+                padding: 5px 10px;
+                font-size: 16px;
+                border-radius: 5px;
+                border: 2px solid #4caf50; /* Match border color */
+                background-color: #f8f9fa;
+                color: #4caf50; /* Match border color */
+                transition: all 0.3s ease;
+              }
+
+              .language-selector select:focus {
+                border-color: #45a049;
+                box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+                background-color: #e8f5e9;
+              }
+
               .question {
                 background-color: #ffffff;
                 padding: 20px;
                 border-radius: 10px;
-                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 margin-bottom: 20px;
                 transition: all 0.3s ease;
                 white-space: pre-wrap;
@@ -111,11 +157,13 @@
                 white-space: pre-wrap;
               }
 
-              .fade-enter-active, .fade-leave-active {
+              .fade-enter-active,
+              .fade-leave-active {
                 transition: opacity 0.5s;
               }
 
-              .fade-enter, .fade-leave-to {
+              .fade-enter,
+              .fade-leave-to {
                 opacity: 0;
               }
 
@@ -138,6 +186,15 @@
                 background-color: #ccc;
                 cursor: not-allowed;
               }
+
+              .language-selector {
+                margin-bottom: 20px;
+              }
+
+              .language-selector select {
+                padding: 5px;
+                font-size: 16px;
+              }
               </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 94, title: '94. 与指定数字相同的数的个数', description: '输出一个整数序列中与指定数字相同的数的个数。\n输入包含2行：\n第1行为N和m，表示整数序列的长度(N <= 100)和指定的数字， 中间用一个空格分开；\n第2行为N个整数，整数之间以一个空格分开。\n输出为N个数中与m相同的数的个数。', inputExample: '3 2\n2 3 2', outputExample: '2', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 95, title: '95. 救援', description: '救生船从大本营出发，营救若干屋顶上的人回到大本营，屋顶数目以及每个屋顶的坐标和人数都将由输入决定，求出所有人都到达大本营并登陆所用的时间。\n在直角坐标系的原点是大本营，救生船每次从大本营出发，救了人之后将人送回大本营。坐标系中的点代表屋顶，每个屋顶由其位置坐标和其上的人数表 示。救生船每次从大本营出发，以速度50 米/分钟驶向下一个屋顶，达到一个屋顶后，救下其上的所有人，每人上船1 分钟，船原路返回，达到大本营，每人下船0.5 分钟。假设原点与任意一个屋顶的连线不穿过其它屋顶。\n输入第一行，一个整数，表示屋顶数n。\n接下来依次有n 行输入，每一行上包含两个表示屋顶相对于大本营的平面坐标位置的实数（单位是米）、一个表示人数的整数，数之间以一个空格分开。\n输出一行，救援需要的总时间，精确到分钟 (向上取整)。', inputExample: '1\n30 40 3', outputExample: '7', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -178,7 +236,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

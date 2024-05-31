@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,13 +36,53 @@
 </template>
 
     <style scoped>
+    .container {
+      position: relative;
+      padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+      border: 2px solid #4caf50;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensures it stays on top */
+    }
+
+    .language-selector label {
+      font-weight: bold;
+      color: #4caf50; /* Match border color */
+      margin-right: 10px;
+    }
+
+    .language-selector select {
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #4caf50; /* Match border color */
+      background-color: #f8f9fa;
+      color: #4caf50; /* Match border color */
+      transition: all 0.3s ease;
+    }
+
+    .language-selector select:focus {
+      border-color: #45a049;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+      background-color: #e8f5e9;
+    }
+
     .question {
       background-color: #ffffff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       transition: all 0.3s ease;
+      white-space: pre-wrap;
     }
 
     .question:hover {
@@ -110,11 +157,13 @@
       white-space: pre-wrap;
     }
 
-    .fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
       transition: opacity 0.5s;
     }
 
-    .fade-enter, .fade-leave-to {
+    .fade-enter,
+    .fade-leave-to {
       opacity: 0;
     }
 
@@ -137,6 +186,15 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    .language-selector {
+      margin-bottom: 20px;
+    }
+
+    .language-selector select {
+      padding: 5px;
+      font-size: 16px;
+    }
     </style>
 
 <script>
@@ -145,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 21, title: '21.交换变量', description: '输入两个整数X和Y，交换二者的值，然后输出。', inputExample: '6 8', outputExample: '8 6', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 22, title: '22.分离数位', description: '输入一个三位数，分离出它百位、十位和个位，依次输出，用空格隔开。', inputExample: '127', outputExample: '1 2 7', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -185,7 +244,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: index + 1, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

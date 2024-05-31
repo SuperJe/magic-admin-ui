@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,11 +36,50 @@
 </template>
 
           <style scoped>
+          .container {
+            position: relative;
+            padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+          }
+
+          .language-selector {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensures it stays on top */
+          }
+
+          .language-selector label {
+            font-weight: bold;
+            color: #4caf50; /* Match border color */
+            margin-right: 10px;
+          }
+
+          .language-selector select {
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #4caf50; /* Match border color */
+            background-color: #f8f9fa;
+            color: #4caf50; /* Match border color */
+            transition: all 0.3s ease;
+          }
+
+          .language-selector select:focus {
+            border-color: #45a049;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+            background-color: #e8f5e9;
+          }
+
           .question {
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             transition: all 0.3s ease;
             white-space: pre-wrap;
@@ -111,11 +157,13 @@
             white-space: pre-wrap;
           }
 
-          .fade-enter-active, .fade-leave-active {
+          .fade-enter-active,
+          .fade-leave-active {
             transition: opacity 0.5s;
           }
 
-          .fade-enter, .fade-leave-to {
+          .fade-enter,
+          .fade-leave-to {
             opacity: 0;
           }
 
@@ -138,6 +186,15 @@
             background-color: #ccc;
             cursor: not-allowed;
           }
+
+          .language-selector {
+            margin-bottom: 20px;
+          }
+
+          .language-selector select {
+            padding: 5px;
+            font-size: 16px;
+          }
           </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 91, title: '91. xy的妙用', description: '进行以下操作：x先等于异或y, y等于异或x, 然后x再异或等于y, 输出x和y的结果, 空格分开。 z等于x按位与上y的结果再加上(x异或y的结果右移一位)。输入一行，2个数，分别表示x，y。空格分割。输出一行，三个数，分别是x y z\n', inputExample: '3 8', outputExample: '8 3 5', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 92, title: '92. 整数幂的判断', description: '输入一个整数n，判断它是不是2的整数幂。如果是，输出“yes”；否则，输出“no”。 \n 输入：一个整数n, 不超过int。输出yes或者no\n', inputExample: '64\n', outputExample: 'yes', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -169,7 +227,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

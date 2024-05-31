@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,14 +36,53 @@
 </template>
 
     <style scoped>
+    .container {
+      position: relative;
+      padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+      border: 2px solid #4caf50;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensures it stays on top */
+    }
+
+    .language-selector label {
+      font-weight: bold;
+      color: #4caf50; /* Match border color */
+      margin-right: 10px;
+    }
+
+    .language-selector select {
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #4caf50; /* Match border color */
+      background-color: #f8f9fa;
+      color: #4caf50; /* Match border color */
+      transition: all 0.3s ease;
+    }
+
+    .language-selector select:focus {
+      border-color: #45a049;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+      background-color: #e8f5e9;
+    }
+
     .question {
       background-color: #ffffff;
       padding: 20px;
-      width: 100%;
       border-radius: 10px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       transition: all 0.3s ease;
+      white-space: pre-wrap;
     }
 
     .question:hover {
@@ -57,7 +103,6 @@
     .question-description {
       margin-top: 10px;
       font-style: italic;
-      white-space: pre-wrap;
     }
 
     .question-input,
@@ -112,11 +157,13 @@
       white-space: pre-wrap;
     }
 
-    .fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
       transition: opacity 0.5s;
     }
 
-    .fade-enter, .fade-leave-to {
+    .fade-enter,
+    .fade-leave-to {
       opacity: 0;
     }
 
@@ -139,6 +186,15 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    .language-selector {
+      margin-bottom: 20px;
+    }
+
+    .language-selector select {
+      padding: 5px;
+      font-size: 16px;
+    }
     </style>
 
 <script>
@@ -147,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 41, title: '41.输出星期几', description: '输入一个整数n，如果0<n<8，输出对应的星期n的英文单词，否则，输出N/A。', inputExample: '1', outputExample: 'Monday', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 42, title: '42.优惠购物', description: '某商场的客户分为白金卡会员、金卡会员、银卡会员和普通客户。为了回馈广大顾客，现推出以下优惠活动：\n（1）字符P表示客户是白金会员，现在将享受7折优惠；\n（2）字符G表示客户是金卡会员，现在将享受8折优惠；\n（3）字符S表示客户是银卡会员，现在将享受9折优惠；\n（4）其他字符表示客户是普通客户，现在将享受9.5折优惠。本题的任务是根据顾客的身份和购买商品的价格，给出应付金额。', inputExample: 'G\n580', outputExample: '464.00', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -189,7 +246,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

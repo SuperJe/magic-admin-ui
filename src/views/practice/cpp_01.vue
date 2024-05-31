@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -28,117 +35,168 @@
   </div>
 </template>
 
-  <style scoped>
-  .question {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    white-space: pre-wrap;
-  }
+<style scoped>
 
-  .question:hover {
-    transform: translateY(-5px);
-  }
+.container {
+  position: relative;
+  padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+}
 
-  .question-header {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px 10px 0 0;
-  }
+.language-selector {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures it stays on top */
+}
 
-  .question-title {
-    margin: 0;
-  }
+.language-selector label {
+  font-weight: bold;
+  color: #4caf50; /* Match border color */
+  margin-right: 10px;
+}
 
-  .question-description {
-    margin-top: 10px;
-    font-style: italic;
-  }
+.language-selector select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #4caf50; /* Match border color */
+  background-color: #f8f9fa;
+  color: #4caf50; /* Match border color */
+  transition: all 0.3s ease;
+}
 
-  .question-input,
-  .question-output {
-    margin-top: 10px;
-    padding: 10px;
-  }
+.language-selector select:focus {
+  border-color: #45a049;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+  background-color: #e8f5e9;
+}
 
-  .code-editor .code-textarea {
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    height: 200px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    transition: all 0.3s ease;
-  }
+.question {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  white-space: pre-wrap;
+}
 
-  .code-editor .code-textarea:focus {
-    border-color: #4caf50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
-  }
+.question:hover {
+  transform: translateY(-5px);
+}
 
-  .btn-disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+.question-header {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
 
-  .btn-primary:hover {
-    background-color: #45a049;
-    box-shadow: 0px 0px 10px 0px rgba(76, 175, 80, 0.7);
-  }
+.question-title {
+  margin: 0;
+}
 
-  .bg-light {
-    background-color: #f8f9fa; /* 浅灰色背景 */
-  }
+.question-description {
+  margin-top: 10px;
+  font-style: italic;
+}
 
-  .result-success {
-    color: #28a745;
-  }
+.question-input,
+.question-output {
+  margin-top: 10px;
+  padding: 10px;
+}
 
-  .result-failure {
-    color: #dc3545;
-    font-weight: normal;
-  }
+.code-editor .code-textarea {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  height: 200px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
 
-  .result-text {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-    white-space: pre-wrap;
-  }
+.code-editor .code-textarea:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+}
 
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s;
-  }
+.btn-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
+.btn-primary:hover {
+  background-color: #45a049;
+  box-shadow: 0px 0px 10px 0px rgba(76, 175, 80, 0.7);
+}
 
-  .submit-btn {
-    background-color: #64d537;
-    color: #fff;
-    font-size: 18px;
-    border: none;
-    border-radius: 15px;
-    padding: 15px 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.bg-light {
+  background-color: #f8f9fa; /* 浅灰色背景 */
+}
 
-  .submit-btn:hover {
-    transform: scale(1.1); /* 按钮悬浮时放大 1.1 倍 */
-  }
+.result-success {
+  color: #28a745;
+}
 
-  .submit-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  </style>
+.result-failure {
+  color: #dc3545;
+  font-weight: normal;
+}
+
+.result-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.submit-btn {
+  background-color: #64d537;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.1); /* 按钮悬浮时放大 1.1 倍 */
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.language-selector {
+  margin-bottom: 20px;
+}
+
+.language-selector select {
+  padding: 5px;
+  font-size: 16px;
+}
+</style>
 
 <script>
 import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
@@ -146,6 +204,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 1, title: '1. 整型数据类型存储空间大小', description: '分别定义int，short类型的变量各一个，并依次输出它们的存储空间大小（单位：字节）, 每个输出单独一行。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 2, title: '2. 浮点型数据类型存储空间大小：', description: '分别定义float，double类型的变量各一个，并依次输出它们的存储空间大小（单位：字节），每个输出以空格隔开。', inputExample: '(无)', outputExample: '(不提供)', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -171,7 +230,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: index + 1, code: code }
+      const req = { id: index + 1, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {
@@ -215,4 +274,3 @@ export default {
   }
 }
 </script>
-

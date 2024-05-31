@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,13 +36,53 @@
 </template>
 
     <style scoped>
+    .container {
+      position: relative;
+      padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+      border: 2px solid #4caf50;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensures it stays on top */
+    }
+
+    .language-selector label {
+      font-weight: bold;
+      color: #4caf50; /* Match border color */
+      margin-right: 10px;
+    }
+
+    .language-selector select {
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #4caf50; /* Match border color */
+      background-color: #f8f9fa;
+      color: #4caf50; /* Match border color */
+      transition: all 0.3s ease;
+    }
+
+    .language-selector select:focus {
+      border-color: #45a049;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+      background-color: #e8f5e9;
+    }
+
     .question {
       background-color: #ffffff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       transition: all 0.3s ease;
+      white-space: pre-wrap;
     }
 
     .question:hover {
@@ -56,7 +103,6 @@
     .question-description {
       margin-top: 10px;
       font-style: italic;
-      white-space: pre-wrap;
     }
 
     .question-input,
@@ -111,11 +157,13 @@
       white-space: pre-wrap;
     }
 
-    .fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
       transition: opacity 0.5s;
     }
 
-    .fade-enter, .fade-leave-to {
+    .fade-enter,
+    .fade-leave-to {
       opacity: 0;
     }
 
@@ -138,6 +186,15 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    .language-selector {
+      margin-bottom: 20px;
+    }
+
+    .language-selector select {
+      padding: 5px;
+      font-size: 16px;
+    }
     </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 6, title: '6. A+B问题', description: '在大部分的在线题库中，都会将A+B问题作为第一题，以帮助新手熟悉平台的使用方法。A+B问题的题目描述如下：给定两个整数A和B，输出A+B的值。保证A、B及结果均在整型范围内。现在请你解决这一问题。', inputExample: '1 2', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 7, title: '7. 计算(a+b)*c的值', description: '给定3个整数a、b、c，计算表达式(a+b)*c的值。', inputExample: '2 3 5', outputExample: '25', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -182,7 +240,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

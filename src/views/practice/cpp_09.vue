@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,11 +36,50 @@
 </template>
 
                 <style scoped>
+                .container {
+                  position: relative;
+                  padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+                }
+
+                .language-selector {
+                  position: fixed;
+                  top: 10px;
+                  left: 10px;
+                  background-color: #ffffff;
+                  padding: 10px;
+                  border: 2px solid #4caf50;
+                  border-radius: 5px;
+                  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                  z-index: 1000; /* Ensures it stays on top */
+                }
+
+                .language-selector label {
+                  font-weight: bold;
+                  color: #4caf50; /* Match border color */
+                  margin-right: 10px;
+                }
+
+                .language-selector select {
+                  padding: 5px 10px;
+                  font-size: 16px;
+                  border-radius: 5px;
+                  border: 2px solid #4caf50; /* Match border color */
+                  background-color: #f8f9fa;
+                  color: #4caf50; /* Match border color */
+                  transition: all 0.3s ease;
+                }
+
+                .language-selector select:focus {
+                  border-color: #45a049;
+                  box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+                  background-color: #e8f5e9;
+                }
+
                 .question {
                   background-color: #ffffff;
                   padding: 20px;
                   border-radius: 10px;
-                  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                   margin-bottom: 20px;
                   transition: all 0.3s ease;
                   white-space: pre-wrap;
@@ -111,11 +157,13 @@
                   white-space: pre-wrap;
                 }
 
-                .fade-enter-active, .fade-leave-active {
+                .fade-enter-active,
+                .fade-leave-active {
                   transition: opacity 0.5s;
                 }
 
-                .fade-enter, .fade-leave-to {
+                .fade-enter,
+                .fade-leave-to {
                   opacity: 0;
                 }
 
@@ -138,6 +186,15 @@
                   background-color: #ccc;
                   cursor: not-allowed;
                 }
+
+                .language-selector {
+                  margin-bottom: 20px;
+                }
+
+                .language-selector select {
+                  padding: 5px;
+                  font-size: 16px;
+                }
                 </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 106, title: '106. 与指定数字相同的数的个数', description: '输出一个整数序列中与指定数字相同的数的个数。\n输入包含三行：\n第一行为N，表示整数序列的长度(N <= 100)；\n第二行为N个整数，整数之间以一个空格分开；\n第三行包含一个整数，为指定的整数m。\n输出为N个数中与m相同的数的个数。', inputExample: '3\n2 3 2\n2', outputExample: ' 2', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 107, title: '107. 陶陶摘苹果', description: '陶陶家的院子里有一棵苹果树，每到秋天树上就会结出10个苹果。苹果成熟的时候，陶陶就会跑去摘苹果。陶陶有个30厘米高的板凳，当她不能直接用手摘到苹果的时候，就会踩到板凳上再试试。\n\n现在已知10个苹果到地面的高度，以及陶陶把手伸直的时候能够达到的最大高度，请帮陶陶算一下她能够摘到的苹果的数目。假设她碰到苹果，苹果就会掉下来。\n输入包括两行数据。第一行包含10个100到200之间（包括100和200）的整数（以厘米为单位）分别表示10个苹果到地面的高度，两个相邻的整数之间用一个空格隔开。第二行只包括一个100到120之间（包含100和120）的整数（以厘米为单位），表示陶陶把手伸直的时候能够达到的最大高度。\n输出包括一行，这一行只包含一个整数，表示陶陶能够摘到的苹果的数目。', inputExample: '100 200 150 140 129 134 167 198 200 111\n110', outputExample: '5', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -175,7 +233,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

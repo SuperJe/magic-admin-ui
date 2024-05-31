@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,11 +36,50 @@
 </template>
 
     <style scoped>
+    .container {
+      position: relative;
+      padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+    }
+
+    .language-selector {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #ffffff;
+      padding: 10px;
+      border: 2px solid #4caf50;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Ensures it stays on top */
+    }
+
+    .language-selector label {
+      font-weight: bold;
+      color: #4caf50; /* Match border color */
+      margin-right: 10px;
+    }
+
+    .language-selector select {
+      padding: 5px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #4caf50; /* Match border color */
+      background-color: #f8f9fa;
+      color: #4caf50; /* Match border color */
+      transition: all 0.3s ease;
+    }
+
+    .language-selector select:focus {
+      border-color: #45a049;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+      background-color: #e8f5e9;
+    }
+
     .question {
       background-color: #ffffff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       transition: all 0.3s ease;
       white-space: pre-wrap;
@@ -111,11 +157,13 @@
       white-space: pre-wrap;
     }
 
-    .fade-enter-active, .fade-leave-active {
+    .fade-enter-active,
+    .fade-leave-active {
       transition: opacity 0.5s;
     }
 
-    .fade-enter, .fade-leave-to {
+    .fade-enter,
+    .fade-leave-to {
       opacity: 0;
     }
 
@@ -138,6 +186,15 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    .language-selector {
+      margin-bottom: 20px;
+    }
+
+    .language-selector select {
+      padding: 5px;
+      font-size: 16px;
+    }
     </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 63, title: '63. 插队问题', description: '给定一个数组长度为n, 将第n个人插入到第x个位置，输出插队后的数组。\n2<=n<=100, 1<=x<=n。\n第一行输入一个n, 第二行有n个数，表示数组的元素。第三行输入一个x。', inputExample: '7\n7 2 3 4 5 6 1\n3', outputExample: '7 2 1 3 4 5 6', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 64, title: '64. 身高统计：', description: 'N个人排成一排，找到一个人：在这个人前面的比他高的人数和这个人后面比他高的人数相等。\n输入格式:\n 第一行输入一个N。随后N行，表示从前到后每个人的身高。\n输出格式: \n输出一个数，是符合条件的那个人的身高。', inputExample: '5\n4\n1\n2\n1\n3', outputExample: '2', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -172,7 +230,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {

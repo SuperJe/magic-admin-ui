@@ -1,5 +1,12 @@
 <template>
   <div class="container mt-5">
+    <div class="language-selector">
+      <label for="language">选择语言：</label>
+      <select id="language" v-model="selectedLanguage">
+        <option value="c_cpp">CPP</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
     <div v-for="(question, index) in questions" :key="index" class="question">
       <div class="question-header">
         <h2 class="question-title">{{ question.title }}</h2>
@@ -29,11 +36,50 @@
 </template>
 
         <style scoped>
+        .container {
+          position: relative;
+          padding-top: 70px; /* Adjust to provide space for the fixed language selector */
+        }
+
+        .language-selector {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          background-color: #ffffff;
+          padding: 10px;
+          border: 2px solid #4caf50;
+          border-radius: 5px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000; /* Ensures it stays on top */
+        }
+
+        .language-selector label {
+          font-weight: bold;
+          color: #4caf50; /* Match border color */
+          margin-right: 10px;
+        }
+
+        .language-selector select {
+          padding: 5px 10px;
+          font-size: 16px;
+          border-radius: 5px;
+          border: 2px solid #4caf50; /* Match border color */
+          background-color: #f8f9fa;
+          color: #4caf50; /* Match border color */
+          transition: all 0.3s ease;
+        }
+
+        .language-selector select:focus {
+          border-color: #45a049;
+          box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+          background-color: #e8f5e9;
+        }
+
         .question {
           background-color: #ffffff;
           padding: 20px;
           border-radius: 10px;
-          box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
           margin-bottom: 20px;
           transition: all 0.3s ease;
           white-space: pre-wrap;
@@ -111,11 +157,13 @@
           white-space: pre-wrap;
         }
 
-        .fade-enter-active, .fade-leave-active {
+        .fade-enter-active,
+        .fade-leave-active {
           transition: opacity 0.5s;
         }
 
-        .fade-enter, .fade-leave-to {
+        .fade-enter,
+        .fade-leave-to {
           opacity: 0;
         }
 
@@ -138,6 +186,15 @@
           background-color: #ccc;
           cursor: not-allowed;
         }
+
+        .language-selector {
+          margin-bottom: 20px;
+        }
+
+        .language-selector select {
+          padding: 5px;
+          font-size: 16px;
+        }
         </style>
 
 <script>
@@ -146,6 +203,7 @@ import { getLastPracticeCode, submitPracticeCode } from '@/api/admin/practice'
 export default {
   data() {
     return {
+      selectedLanguage: 'c_cpp',
       questions: [
         { id: 77, title: '77. 平均年龄', description: '班上有学生若干名，给出每名学生的年龄（整数），求班上所有学生的平均年龄，保留到小数点后两位。\n输入第一行有一个整数n（1<= n <= 100），表示学生的人数。其后n行每行有1个整数，表示每个学生的年龄，取值为15到25。\n输出一行，该行包含一个浮点数，为要求的平均年龄，保留到小数点后两位。', inputExample: '2\n18\n17', outputExample: '17.50', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 78, title: '78. 最高的分数', description: '孙老师讲授的《计算概论》这门课期中考试刚刚结束，他想知道考试中取得的最高分数。因为人数比较多，他觉得这件事情交给计算机来做比较方便。你能帮孙老师解决这个问题吗？\n输入两行，第一行为整数n（1 <= n < 100），表示参加这次考试的人数.第二行是这n个学生的成绩，相邻两个数之间用单个空格隔开。所有成绩均为0到100之间的整数。\n输出一个整数，即最高的成绩。', inputExample: '5\n85 78 90 99 60', outputExample: '99', code: '', result: null, errMsg: null, statusMsg: '' },
@@ -180,7 +238,7 @@ export default {
       this.questions[index].errMsg = ''
       this.questions[index].statusMsg = ''
 
-      const req = { id: this.questions[index].id, code: code }
+      const req = { id: this.questions[index].id, code: code, lang: this.selectedLanguage }
       submitPracticeCode(JSON.stringify(req)).then(response => {
         let isCorrect = true
         if (response.data.code !== 0) {
