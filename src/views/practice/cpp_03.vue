@@ -213,7 +213,7 @@ export default {
         { id: 26, title: '26.旅行费用', description: '鹭华公司"厦门一日游"的收费标准为：5人以内（含5人）按散客标准，每人300元；超过5人，按团体标准，每人280元。请根据输入的人数，输出其旅游费用。', inputExample: '9', outputExample: '2520', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 27, title: '27.飞机行李的收费', description: '乘坐飞机时，当乘客行李小于等于20公斤时，按每公斤1.68元收费，大于20公斤时，按每公斤1.98元收费，编程计算收费（保留2位小数）。', inputExample: '输入示例', outputExample: '输出示例', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 28, title: '28.最大的数', description: '输入三个数，输出其中最大的数。', inputExample: '输入示例', outputExample: '输出实例', code: '', result: null, errMsg: null, statusMsg: '' },
-        { id: 29, title: '29.字符判断', description: '编写一个程序，由键盘输入字符，然后显示该字符是否是一个数字字符、大写字母、小写字母、一个空格或其它字符', inputExample: '输入示例', outputExample: '输出实例', code: '', result: null, errMsg: null, statusMsg: '' },
+        { id: 29, title: '29.字符判断', description: '编写一个程序，由键盘输入字符，然后显示该字符是否是一个数字字符、大写字母、小写字母或其它字符。\n如果是数字字符则输出0,小写字母则输出1,大写字母则输出2,其他字符输出3', inputExample: '#', outputExample: '3', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 30, title: '30.比较大小', description: '输入三个整数x、y、z，判断其是否满足x≤y≤z。若满足，输出"YES"；否则，输出"NO"。', inputExample: '3 6 7', outputExample: 'YES', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 31, title: '31.判断数正负', description: '给定一个整数N，判断其正负。', inputExample: '1', outputExample: 'positive', code: '', result: null, errMsg: null, statusMsg: '' },
         { id: 32, title: '32.输出绝对值', description: '输入一个浮点数，输出这个浮点数的绝对值。', inputExample: '-3.14', outputExample: '3.14', code: '', result: null, errMsg: null, statusMsg: '' },
