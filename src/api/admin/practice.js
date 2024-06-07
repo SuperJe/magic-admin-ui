@@ -23,10 +23,18 @@ export function getQuestions(ids) {
     method: 'get'
   })
 }
+
 export function questionSubmit(data) {
   return request({
     url: '/api/v1/practice/question_submit',
     method: 'post',
     data
+  })
+}
+
+export function getTest(id) {
+  return request({
+    url: '/api/v1/practice/get_test?id=' + id,
+    method: 'get'
   })
 }
