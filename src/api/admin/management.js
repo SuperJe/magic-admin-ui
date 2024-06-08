@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getCodePromble() {
+export function getCodePromble(offset, limit, reverse) {
   return request({
-    url: '/api/v1/management/all_code_problem',
+    url: '/api/v1/management/code_problem?offset=' + offset + '&limit=' + limit + '&reverse=' + reverse,
     method: 'get'
   })
 }

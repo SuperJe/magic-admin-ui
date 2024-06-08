@@ -46,7 +46,7 @@
       <el-pagination
         :current-page="currentPage"
         :page-size="pageSize"
-        layout="prev, pager, next"
+        layout="prev, next"
         :total="total"
         @current-change="handleCurrentChange"
       />
@@ -92,6 +92,10 @@ export default {
   data() {
     return {
       tableData: [],
+      hasMore: true,
+      isReverse: false,
+      minId: 0,
+      maxId: 0,
       currentPage: 1,
       pageSize: 20,
       total: 0,
@@ -113,14 +117,26 @@ export default {
   },
   methods: {
     fetchData() {
-      getCodePromble().then(response => {
+      var offset = this.maxId
+      if (this.isReverse === true) {
+        offset = this.minId
+      }
+      getCodePromble(offset, this.pageSize, this.isReverse).then(response => {
         this.tableData = response.data.problems
         this.total = response.data.total
+        this.hasMore = response.data.has_more
+        // 找到最小和最大的id
+        if (this.tableData.length > 0) {
+          const ids = this.tableData.map(item => item.id)
+          this.minId = Math.min(...ids)
+          this.maxId = Math.max(...ids)
+        }
       }).catch(error => {
         console.error('Failed to fetch data:', error)
       })
     },
     handleCurrentChange(page) {
+      this.isReverse = page < this.currentPage
       this.currentPage = page
       this.fetchData()
     },
@@ -149,7 +165,7 @@ export default {
 }
 </script>
 
-  <style>
+<style>
 .table-container {
   display: flex;
   flex-direction: column;
@@ -175,12 +191,27 @@ export default {
 }
 
 .pagination-container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 20px 0;
 }
 
 .el-pagination {
   display: inline-block;
+  font-size: 18px;
+}
+
+.el-pagination .el-pager li:not(.disabled) {
+  cursor: pointer;
+}
+
+.el-pagination .el-pager li {
+  margin: 0 5px;
+}
+
+.el-pagination .el-pager li:hover {
+  color: #409EFF;
 }
 
 .el-table th {
