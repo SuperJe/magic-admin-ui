@@ -26,6 +26,8 @@
         <el-select v-model="form.teacher" placeholder="请选择授课老师">
           <el-option label="颜老师" value="颜老师" />
           <el-option label="岳老师" value="岳老师" />
+          <el-option label="郭老师" value="郭老师" />
+          <el-option label="陈老师" value="陈老师" />
         </el-select>
       </el-form-item>
       <el-form-item label="课程类型" prop="courseType">
