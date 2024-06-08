@@ -153,12 +153,7 @@ export default {
       console.log('Modified data:', JSON.stringify(this.currentRow))
       updateCodeProblem(JSON.stringify(this.currentRow)).then(response => {
         console.log('response:', response)
-        this.fetchData()
       })
-      // 伪代码: 发起修改请求
-      // axios.post('/api/edit', this.currentRow).then(() => {
-      //   this.fetchData()
-      // })
       this.dialogVisible = false
     }
   }
