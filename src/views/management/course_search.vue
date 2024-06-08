@@ -6,6 +6,10 @@
       placeholder="请输入内容"
       @select="handleSelect"
     />
+    <el-select v-model="selectedCourseType" placeholder="选择课程类型">
+      <el-option label="CPP" value="2" />
+      <el-option label="Python" value="1" />
+    </el-select>
     <el-button type="primary" @click="handleQuery">搜索</el-button>
     <el-table
       :data="learned_records"
@@ -31,9 +35,11 @@
         style="white-space: pre-wrap;"
         prop="remark"
       />
+      <!--
       <el-table-column
         label="课程类型"
         prop="course_type"
+        :formatter="formatCourseType"
       />
       <el-table-column
         label="操作"
@@ -58,14 +64,8 @@
           >删除</el-button>
         </template>
       </el-table-column>
+    -->
     </el-table>
-    <pagination
-      v-show="total>0"
-      :total="total"
-      :page.sync="queryParams.pageIndex"
-      :limit.sync="queryParams.pageSize"
-      @pagination="getList"
-    />
     <el-dialog :title="title" :visible.sync="open" width="600px" :close-on-click-modal="false">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="课堂记录" prop="record">
@@ -114,6 +114,7 @@ export default {
       name: '',
       timeout: null,
       open: false,
+      selectedCourseType: '2', // 默认值为CPP
       queryParams: {
         pageIndex: 1,
         pageSize: 10
@@ -170,7 +171,7 @@ export default {
       )
     },
     handleQuery() {
-      getLearned(0, this.name).then(response => {
+      getLearned(Number(this.selectedCourseType), this.name).then(response => {
         this.learned_records = response.data.records
         console.log(this.learned_records)
       })
@@ -262,6 +263,10 @@ export default {
           console.log('Validation failed')
         }
       })
+    },
+
+    formatCourseType(value) {
+      return value === 2 ? 'CPP' : 'Python'
     }
   }
 }
