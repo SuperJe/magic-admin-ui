@@ -38,3 +38,11 @@ export function getTest(id) {
     method: 'get'
   })
 }
+
+export function addCodeProblem(data) {
+  return request({
+    url: '/api/v1/practice/add_code_problem',
+    method: 'post',
+    data
+  })
+}
