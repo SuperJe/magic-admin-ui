@@ -1,6 +1,11 @@
 <template>
   <div class="table-container">
     <el-table :data="tableData" stripe border style="width: 100%">
+      <el-table-column prop="p_id" label="编号" width="100">
+        <template slot-scope="scope">
+          <div class="text-ellipsis">{{ scope.row.p_id }}</div>
+        </template>
+      </el-table-column>
       <el-table-column prop="title" label="标题" width="180">
         <template slot-scope="scope">
           <div class="text-ellipsis">{{ truncateText(scope.row.title) }}</div>
@@ -9,11 +14,6 @@
       <el-table-column prop="detail" label="描述" width="180">
         <template slot-scope="scope">
           <div class="text-ellipsis">{{ truncateText(scope.row.detail) }}</div>
-        </template>
-      </el-table-column>
-      <el-table-column prop="p_id" label="编号" width="100">
-        <template slot-scope="scope">
-          <div class="text-ellipsis">{{ scope.row.p_id }}</div>
         </template>
       </el-table-column>
       <el-table-column prop="example_input" label="输入样例" width="180">
